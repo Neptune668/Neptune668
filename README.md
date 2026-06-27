@@ -1,4 +1,6 @@
 ## Hi there 👋
+Code wrangler by day, open-source contributor by night.
+My pinned repos tell you more about me than this bio ever could. 😄
 
 <!--
 **Neptune668/Neptune668** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
