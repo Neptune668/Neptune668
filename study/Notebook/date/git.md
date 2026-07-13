@@ -1,3 +1,76 @@
+
+
+## git命令汇总
+
+```bash
+一、全局配置命令
+# 设置提交用户名
+git config --global user.name "名称"
+# 设置提交邮箱
+git config --global user.email "邮箱"
+# 查看全部配置
+git config --list
+
+二、本地仓库初始化与状态查看
+# 初始化本地git仓库
+git init
+# 查看工作区、暂存区状态
+git status
+
+三、提交流程（工作区→暂存区→本地库）
+# 单个文件加入暂存区
+git add 文件名
+# 全部修改文件加入暂存区
+git add .
+# 暂存区提交到本地仓库，带备注
+git commit -m "提交说明"
+
+四、版本历史与版本回退
+# 简洁查看所有提交版本（含版本号）
+git reflog
+# 查看完整提交日志
+git log
+# 回退到指定历史版本
+git reset --hard 版本号
+
+五、分支全套命令
+# 创建新分支
+git branch 分支名
+# 查看所有分支
+git branch -v
+# 切换到指定分支
+git checkout 分支名
+# 将目标分支合并到当前分支
+git merge 分支名
+分支冲突专用命令
+# 冲突文件修改完成后加入暂存区
+git add 冲突文件名
+# 冲突解决提交，不加文件名称
+git commit -m "解决冲突备注"
+
+六、远程仓库操作（Gitee/GitHub）
+# 查看已绑定远程仓库别名与地址
+git remote -v
+# 绑定远程仓库，别名默认origin
+git remote add origin 远程仓库HTTPS/SSH地址
+# 推送本地分支到远程对应分支
+git push origin 本地分支名
+# 拉取远程最新代码并自动合并本地
+git pull origin 远程分支名
+# 克隆远程完整仓库到本地
+git clone 远程仓库地址
+
+七、SSH免密配置命令
+# 生成SSH密钥对
+ssh-keygen -t ed25519 -C "注册邮箱"
+# 读取公钥内容，复制到Gitee部署公钥
+cat ~/.ssh/id_ed25519.pub
+# 测试SSH连通性
+ssh -T git@shturl.cc
+```
+
+
+
 ## 第1章 Git概述
 
 ### 1. 什么是版本控制
@@ -801,6 +874,3 @@ target
 | 推送             | `Ctrl + Shift + K`            | 推送到远程仓库     |
 | 查看历史         | 右键 → `Git` → `Show History` | 查看提交记录       |
 | 查看当前分支     | 右下角                        | 点击可进行分支管理 |
-
-
-
