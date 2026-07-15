@@ -751,6 +751,11 @@ print(response)
 
 # 第4章RAG 检索
 
+> 向量搜索的5大步骤：输入重写，嵌入，相似性搜索，重排序，增强生成
+>
+> 向量化的四大步骤分别是什么
+> 加载，切割，嵌入，存储
+
 > 内容整理，涵盖 RAG 核心概念、文档加载、切分、嵌入、向量存储与检索及生成落地。
 
 ------
@@ -1310,8 +1315,6 @@ def dense_vector_search_example(client:MilvusClient,query:str,limit:int =5):
 
 - 不涉及向量计算，仅基于标量字段（如 `text`、`metadata`）进行精确/模糊查询。
 
-python
-
 ```python
 # 模糊查询
 client.query(collection, filter='text like "%大模型%"', output_fields=["id","text"], limit=5)
@@ -1345,7 +1348,11 @@ def hybrid_search(client:MilvusClient,query:str,limit:int=5):
     return results
 ```
 
-
+> - **向量化**：将文本/图像转为稠密或稀疏向量。
+> - **索引**：HNSW（稠密）/ 倒排（稀疏）加速搜索。
+> - **混合检索**：结合稠密（语义）和稀疏（关键词）优势，RRF 融合排序。
+> - **RAG**：检索 + 生成，让 LLM 基于检索到的文档回答问题。
+> - **部署**：Milvus Standalone 适合开发，Docker 快速启动。
 
 ------
 
@@ -1402,5 +1409,600 @@ print(response.content)
 
 ------
 
-# 第5章.
+# 第5章.(有待更新)
 
+## 1.向量数据库插入
+
+>此脚本要实现将数据插入到Milvus的Collection中 
+>1.加载数据源-读取md、docx 
+>2.切分上一步读取过来的数据 - 构建一个切分器，对上一步的数据进行切分
+>3.使用嵌入模型进行文本嵌入处理-获取模型对象,直接将文本内容进行处理
+>4·待插入数据的结构的构造
+>5.调用MilvsClient的方法，实现数据插入
+
+```python
+# 此脚本要实现将数据插入到Milvus的Collection中
+# 1.加载数据源 - 读取md、docx
+# 2.切分上一步读取过来的数据 - 构建一个切分器，对上一步的数据进行切分
+# 3.使用嵌入模型进行文本嵌入处理 - 获取模型对象，直接将文本内容进行处理
+# 4.待插入数据的结构的构造
+# 5.调用MilvusClient的方法，实现数据插入
+from langchain_community.document_loaders import UnstructuredMarkdownLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from FlagEmbedding import BGEM3FlagModel
+from pymilvus import MilvusClient
+
+def get_client():
+    client = MilvusClient(
+        uri="http://127.0.0.1:19530",
+        token=""
+    )
+    return client
+
+def insert_data(client:MilvusClient):
+    # 1.加载数据源，加载md
+    loader = UnstructuredMarkdownLoader("../assets/models/bge-m3",encoding = "utf-8",mode="single")
+    docs = loader.load()
+    # print(docs)
+    # 2.将获取到的数据进行切分
+    # 定义切分器
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=150,
+        chunk_overlap=20,
+        separators=["\n\n","\n","。"])
+    splitted_docs = splitter.split_documents(docs)
+    # for splitted_doc in splitted_docs:
+    #     print(splitted_doc,end="\n========================================\n")
+
+    # 3.使用嵌入模型处理文本内容，输出稠密向量和稀疏向量
+    model = BGEM3FlagModel(
+        model_name_or_path="./assets/models/bge-m3"
+    )
+    all_vectors = model.encode( # 获取编码后的总向量
+        [splitted_doc.page_content for splitted_doc in splitted_docs],# 遍历切分后的数据列表，将每一项的page_content放入这个列表中
+        return_dense=True, # 返回稠密向量
+        return_sparse=True # 返回稀疏向量
+    )
+    # 将总向量中的稠密向量和稀疏向量分别提取出来
+    dense_vectors = all_vectors['dense_vecs']
+    sparse_vectors = all_vectors['lexical_weights']
+    # print(dense_vectors[0])
+    # print(sparse_vectors[0])
+
+    # 4.构造可以插入到Milvus中的数据结构
+    insert_data_list =[]
+    for doc,dense_vector, sparse_vector in zip(splitted_docs,dense_vectors,sparse_vectors):
+        insert_data_list.append({
+            "vector":dense_vector,
+            "text":doc.page_content,
+            "metadata":doc.metadata,
+            "sparse_vector":sparse_vector
+        })
+    response = client.insert(
+        collection_name="demo_collection",
+        data = insert_data_list
+    )
+    print(response)
+
+if __name__ == "__main__":
+    client = get_client()
+    print(client.list_collections())
+    insert_data(client)
+
+```
+
+## 2.Agents ![image-20260701111947607](C:\Users\YuanYi\AppData\Roaming\Typora\typora-user-images\image-20260701111947607.png)                          
+
+Ø 大模型(LLM)：作为大脑，提供推理、规划和知识理解能力。
+
+Ø 记忆(Memory)：具备短期记忆和长期记忆，支持快速知识检索。
+
+Ø 工具(Tools)：调用外部工具（如API、数据库）的执行单元。
+
+Ø 规划(Planning)：任务分解、反思与自省框架实现复杂任务处理。
+
+Ø 行动(Action)：实际执行决策的能力。
+
+Ø 协作：通过与其他 Agent 交互合作，完成更复杂的任务目标。
+
+```python
+# 此脚本用于实现Milvus的检索
+f		rom typing import List
+
+from pymilvus import MilvusClient, AnnSearchRequest, RRFRanker
+from FlagEmbedding import BGEM3FlagModel
+
+# 创建一个服务器的连接对象
+def get_client():
+    client = MilvusClient(
+        uri="http://127.0.0.1:19530",
+        token=""
+    )
+
+    return client
+
+# 获取模型对象
+def get_model():
+    model = BGEM3FlagModel(
+        model_name_or_path="./assets/models/bge-m3"
+    )
+    return model
+
+# 模型向量化处理的方法
+def encode_query(model:BGEM3FlagModel,query:str):
+    all_embeddings = model.encode(
+        [query],
+        return_dense=True,
+        return_sparse=True
+    )
+    dense_vec = all_embeddings['dense_vecs'][0]
+    sparse_vec = all_embeddings['lexical_weights'][0]
+    return dense_vec,sparse_vec
+
+def print_hits(title: str, hits: List[dict]):
+    print("\n" + "=" * 20)
+    print(title)
+    print("=" * 20)
+    for i, hit in enumerate(hits, start=1):
+        entity = hit.get("entity", {})
+        print(
+            {
+                "rank": i,
+                "id": entity.get("id"),
+                "distance": hit.get("distance"),
+                "text": entity.get("text"),
+                "metadata": entity.get("metadata"),
+            }
+        )
+
+
+# 第一个例子：通过稠密向量进行匹配的例子
+def dense_vector_search_example(client:MilvusClient,query:str,limit:int =5):
+    # 获取模型的对象
+    model = get_model()
+    # 调用模型处理的方法进行查询的文本的向量化处理
+    dense_vec,_ = encode_query(model,query)
+    # 调用client的查询方法实现查询
+    results = client.search(
+        collection_name="demo_collection",
+        data=[dense_vec],
+        anns_field="vector",
+        limit = limit,
+        search_params={"metric_type":"L2"},
+        output_fields=["id","text","metadata"]
+    )
+    print_hits("稠密向量检索（vector）", results[0])
+    return results
+
+def hybrid_search(client:MilvusClient,query:str,limit:int=5):
+    model = get_model()
+    dense_vec,sparse_vec = encode_query(model,query)
+    # 稠密向量的检索
+    dense_req = AnnSearchRequest(
+        data=[dense_vec],
+        anns_field="vector",
+        param={"metric_type":"L2"},
+        limit=limit
+    )
+    # 稀疏向量的检索
+    sparse_req = AnnSearchRequest(
+        data=[sparse_vec],
+        anns_field="sparse_vector",
+        param={"metric_type":"IP"},
+        limit=limit
+    )
+    results = client.hybrid_search(
+        collection_name="demo_collection",
+        reqs=[dense_req,sparse_req],
+        ranker=RRFRanker(k=60),
+        limit=limit,
+        output_fields=["id","text","metadata"]
+    )
+    print_hits("稠密向量检索（vector）", results[0])
+    return results
+
+if __name__ == "__main__":
+    client = get_client()
+    # dense_vector_search_example(client,"投机解码")
+    hybrid_search(client,"投机解码")
+    
+```
+
+
+
+### 2.1.Agent构建（了解）
+
+略代码3，4
+
+```python
+# 这个脚本用于展示使用OpenAI原生SDK调用工具是如何实现的
+from dotenv import load_dotenv
+from openai import OpenAI
+import json
+load_dotenv()
+client = OpenAI()
+
+# 1. 通过JSON结构定义工具，包括工具名称，描述，参数等
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get today's weather for a location.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "城市名称, e.g. San Francisco",
+                    },
+                    "date" :{
+                        "type":"string",
+                        "description":"想要查询的天气的日期, e.g. 2023-12-25"
+                    }
+                },
+                "required": ["city","date"],
+                "additionalProperties": False,
+            },
+            "strict": True,
+        },
+    },
+]
+
+def get_weather(city,date):
+    return f"{city} on {date} is cloudy with a chance of rain."
+
+messages = [
+    {"role": "user", "content": "What is the weather like in 北京 on 2024-12-25?"}
+]
+
+# 2. Prompt the model with tools defined
+response = client.chat.completions.create(
+    model="gpt-4.1",
+    messages=messages,
+    tools=tools,
+)
+# print(response)
+
+messages.append(response.choices[0].message)
+
+for tool_call in response.choices[0].message.tool_calls or []:
+    if tool_call.function.name == "get_weather":
+        # 3. 执行工具函数的逻辑
+        args = json.loads(tool_call.function.arguments)
+        weather = get_weather(args["city"],args["date"])
+
+        # 4. 将工具函数的执行结果添加到消息列表中
+        messages.append(
+            {
+                "role": "tool",
+                "tool_call_id": tool_call.id,
+                "content": json.dumps({"weather": weather}),
+            }
+        )
+
+response = client.chat.completions.create(
+    model="gpt-4.1",
+    messages=messages,
+    tools=tools,
+)
+
+# 5. 模型会根据工具函数的执行结果，生成最终的回复
+print(response.choices[0].message.content)
+
+```
+
+```python
+from dotenv import load_dotenv
+from langchain.tools import tool
+from langchain_core.messages import HumanMessage,ToolMessage
+import logging
+logging.basicConfig(level=logging.DEBUG)
+load_dotenv()
+# 可选：通过BaseModel详细定义工具的参数
+from pydantic import BaseModel,Field
+class GetWeatherArgs(BaseModel):
+    city: str = Field(description="城市名称")
+    date: str = Field(description="日期，格式为YYYY-MM-DD")
+
+@tool(description="获取城市在特定日期的天气",args_schema=GetWeatherArgs)
+def get_weather(city, date) -> str:
+    """获取指定城市在指定日期的天气"""
+    return f"{city} 在 {date} 天气多云，有下雨的可能性"
+
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(model="gpt-4.1")
+
+llm = llm.bind_tools([get_weather])
+
+message_list = [
+    HumanMessage(content="北京2024-12-25的天气")
+]
+
+res = llm.invoke(message_list)
+# print(res)
+message_list.append(res)
+
+# 当前结果当中包含调用工具的出参
+print('LLM的首次回复：',res)
+
+# 解析调用工具的出参，手动调用工具
+tool_call = res.tool_calls[0]
+args = tool_call['args']
+call_tool_res = get_weather.invoke(args)
+id = tool_call['id']
+
+#构造Message对象
+tool_message = ToolMessage(tool_call_id=id,content=call_tool_res)
+message_list.append(tool_message)
+
+res = llm.invoke(message_list)
+
+print('基于工具调用返回信息后，LLM的回复：',res)
+
+```
+
+
+
+## 3.langchain工具调用（重点）代码5
+
+```python
+load_dotenv()
+llm = ChatOpenAI(model = "gpt-4o-mini")
+
+# 定义 Tavily 搜索工具
+search = TavilySearch(max_results=5)
+tools = [search]
+
+#注册agent
+agent = create_agent(
+    model=llm,  # 模型
+    tools=tools,  # 工具
+    system_prompt="你是位助手，需要调用工具来帮助用户。",  # 系统提示词
+)
+# 调用 Agent
+res = agent.invoke(
+    {"messages": [{"role": "user", "content": "今天北京的天气怎么样？"}]}
+)
+print(res)
+```
+
+Tavilly网站
+
+自己写一个工具
+
+```python
+# 此脚本通过注册一个agent自动实现工具的调用
+from dotenv import load_dotenv
+from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+from langchain_tavily import TavilySearch
+from pydantic import BaseModel, Field
+
+load_dotenv()
+
+llm = ChatOpenAI(model = "gpt-5.5")
+
+class GetWeatherArgs(BaseModel):
+    city: str = Field(description="城市名称")
+    date: str = Field(description="日期，格式为YYYY-MM-DD")
+
+@tool(description="获取城市在特定日期的天气",args_schema=GetWeatherArgs)
+def get_weather(city, date) -> str:
+    """获取指定城市在指定日期的天气"""
+    return f"{city} 在 {date} 天气多云，有龙卷风的可能性"
+
+# search = TavilySearch(max_results=5)
+tools = [get_weather]
+
+# 注册一个agent
+agent = create_agent(
+    model=llm,
+    tools = tools,
+    system_prompt="你是位助手，需要调用工具来帮助用户。"
+)
+response = agent.invoke(
+{"messages": [{"role": "user", "content": "深圳今天的天气怎么样"}]}
+)
+print(response)
+					
+```
+
+### 5.3MCP介绍
+
+>Model Context Protocol（MCP，模型上下文协议）是一个开源协议，它标准化了大语言模型与外部工具和数据源通信的方式，允许开发者和工具提供商只需集成一次，就能与任何兼容 MCP 的系统交互。MCP 就像 USB-C 标准：不需要为每个设备使用不同的连接器，而是使用一个端口来处理多种类型的连接
+
+![image-20260701141207260](C:\Users\YuanYi\AppData\Roaming\Typora\typora-user-images\image-20260701141207260.png)
+
+5.3.1 MCP架构
+
+MCP 遵循客户端-服务器架构，架构中包括：
+
+| **MCP** **主机**   | **协调和管理一个或多个 MCP** **客户端的 AI** **应用**        |
+| ------------------ | ------------------------------------------------------------ |
+| **MCP** **客户端** | 一个保持与 MCP 服务器连接的组件，通过 MCP 定义的消息处理通信，从服务器查找并请求资源和工具，并管理与服务器的连接生命周期 |
+| **MCP** **服务器** | 一个向 MCP 客户端提供服务的程序，通过协议暴露工具、资源和提示模板功能 |
+
+1.1.1 MCP数据传输协议（略）
+
+#### Stdio		client.py
+
+```python
+import asyncio
+from mcp.client.stdio import stdio_client
+from mcp import ClientSession, StdioServerParameters
+
+async def stdio_run():
+    server_params = StdioServerParameters(
+        command=r"F:\Anaconda3\envs\langchain\python.exe",
+        args=[r"./client.py"],
+    )
+
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            # 初始化连接
+            await session.initialize()
+
+            # 获取可用工具
+            tools = await session.list_tools()
+            print(tools)
+            print()
+
+            # 调用工具
+            call_res = await session.call_tool("add", {"a": 1, "b": 2})
+            print(call_res)
+            print()
+
+
+asyncio.run(stdio_run())
+
+```
+
+stdio客户端使用MCP的流程为：
+
+Ø 通过stdio_client启动进程：构建stdio启动参数
+
+Ø 建立会话：通过ClientSession构建会话session
+
+Ø 握手初始化：调用session.initialize()
+
+Ø 获取能力: 通过session.list_tools() / session.call_tools() 等获取或者使用MCP能力
+
+示例代码如下所示
+
+```python
+# mcp的服务器，展示stdio模式下的使用
+from mcp.server.fastmcp import FastMCP
+
+# 创建 MCP 实例
+mcp = FastMCP("Demo")
+
+# 为 MCP 实例添加工具
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    return a + b
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
+```
+
+#### 5.3.7StreamableHttp	07代码
+
+构建StreamableHttp服务端和stdio服务端类似，只是需要将服务端运行起来。运行的方式同样是通过mcp.run，并设置transport为streamable-http即可：
+
+```python
+import asyncio
+from mcp import ClientSession
+from mcp.client.streamable_http import streamable_http_client
+
+async def streamablehttp_run():
+    url = "http://127.0.0.1:8000/mcp"
+
+    async with streamable_http_client(url=url) as (read,write,_):
+        async with ClientSession(read,write) as session:
+            # 初始化连接
+            await session.initialize()
+
+            # 获取可用工具
+            tools = await session.list_tools()
+            print(tools)
+            print()
+
+            # 调用工具
+            call_res = await session.call_tool("add", {"a": 1, "b": 2})
+            print(call_res)
+            print()
+
+asyncio.run(streamablehttp_run())
+```
+
+StreamableHttp和Stdio客户端编码方式类似，构建client的方式，从stdio_client的方式换成了streamable_http_client，配置服务端所在的地址。		
+
+```python
+#server
+from mcp.server.fastmcp import FastMCP
+
+# 创建 MCP 实例
+mcp = FastMCP("Demo")
+
+# 为 MCP 实例添加工具
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    return a + b
+
+if __name__ == "__main__":
+    # mcp.settings.host = "0.0.0.0"
+    # mcp.settings.port = 8888
+    mcp.run(transport="streamable-http")  # 默认启动在 127.0.0.1:8000
+```
+
+#### 5.3.8 LangChain 使用 MCP（重点）代码8
+
+LangChain Agent 可以通过 langchain-mcp-adapters 包使用 MCP 服务器上定义的工具。这里演示的工具，使用了阿里云魔搭MCP广场当中的工具：https://www.modelscope.cn/mcp。
+
+魔搭广场当中的部分MCP服务，在魔搭平台已经部署，可以直接使用（也可以使用个人函数计算资源进行部署），例如如下12306MCP工具
+
+
+
+将MCP连接JSON复制到MultiServerMCPClient的参数当中，注意需要将type键的名称改为transport，获取到client实例。
+
+通过client.get_tools()方法即可获取到当前所配置的MCP当中所包含的所有工具，langchain_mcp_adapters会将其封装成符合langchain规范的工具。将其传递到create_agent函数的tool当中，agent即可在决策过程中，判断是否需要使用这些工具。
+
+需要注意的是，由于MultiServerMCPClient只支持异步调用，所以agent的调用，也需要转换成异步形式，示例代码如下所示：***url要换***
+
+```python
+# 此脚本通过LangChain实现了调用别人封装的MCP工具，非常之简单
+from dotenv import load_dotenv
+from langchain.agents import create_agent
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from langchain_openai import ChatOpenAI
+
+load_dotenv()
+client = MultiServerMCPClient(
+    {
+         "12306-mcp": {
+      "transport": "streamable_http",
+      "url": "https://mcp.api-inference.modelscope.net/b6da3ecc47bc43/mcp"
+    },
+    #     "amap-maps": {
+    #   "transport": "http",
+    #   "url": "https://mcp.api-inference.modelscope.net/14db9c03451e47/mcp"
+    # }
+    }
+)
+async def main():
+    tools = await client.get_tools()
+    # print(tools)
+    llm = ChatOpenAI(model = "gpt-5.5")
+    agent = create_agent(
+        llm,
+        tools
+    )
+    response = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": "查询一下7月2日深圳到北京的火车票"}]}
+    )
+    print(response)
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
+```
+
+![image-20260701191534873](C:\Users\YuanYi\AppData\Roaming\Typora\typora-user-images\image-20260701191534873.png)
+
+graph TD
+    A[用户输入] --> B[LangChain Agent]
+    B --> C{工具来源}
+    C -->|本地专用| D[直接 Tool Calling]
+    C -->|标准化服务| E[MCP 客户端]
+    E --> F[MCP 服务器（工具市场）]
+    F --> G[企业内部 API]
+    F --> H[第三方服务 API]
+    
+
+    D --> I[执行本地函数]
+    G --> I
+    H --> I
+    I --> J[返回结果给 Agent]
