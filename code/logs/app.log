@@ -1,0 +1,21 @@
+2026-09-04 11:10:45 | INFO     | request_id - bfdf1048-6298-4253-9048-92b454ae4593 | __main__:<module>:68 - 普通信息
+2026-09-04 11:10:45 | WARNING  | request_id - 412afb7e-2f21-4b68-be06-f4c74bf82b0c | __main__:<module>:69 - 警告信息
+2026-09-04 11:10:45 | ERROR    | request_id - 09c32139-4df7-44b2-9d76-6fc15fe00b71 | __main__:<module>:70 - 错误信息
+2026-09-04 11:10:45 | CRITICAL | request_id - d337bda5-6f45-42e9-9e08-c67a7df4f5f8 | __main__:<module>:71 - 严重错误
+2026-09-04 15:31:16 | INFO     | request_id - ec2b7a1b-a699-44ce-995f-0f3f1051b90c | __main__:start_build:18 - 构建元数据知识库 开始
+2026-09-04 15:31:18 | INFO     | request_id - 95b6930b-b8fc-4bb2-8916-f3047ad91ae1 | app.services.meta_knowledge_service:build:30 - 构建业务 开始
+2026-09-04 15:31:18 | INFO     | request_id - ba785b45-0f3f-40a3-b8c1-147458732cb0 | __main__:start_build:43 - 构建元数据知识库 完成
+2026-09-04 15:34:30 | INFO     | request_id - 095ca439-1308-4938-890e-ab6c92c880ed | __main__:start_build:18 - 构建元数据知识库 开始
+2026-09-04 15:34:31 | INFO     | request_id - db2fdbe3-c4e9-4d74-aab4-70d796ed2deb | app.services.meta_knowledge_service:build:30 - 构建业务 开始
+2026-09-04 15:34:31 | INFO     | request_id - 6204393d-0584-4e65-a849-61c6216d0bd5 | __main__:start_build:47 - 构建元数据知识库 完成
+2026-09-05 15:24:30 | INFO     | request_id - 26671644-5131-4b3e-9659-10e2201dc7eb | __main__:start_build:18 - 构建元数据知识库 开始
+2026-09-05 15:24:32 | INFO     | request_id - 97d0f83d-a913-484f-9db7-8f4d72dd7722 | app.services.meta_knowledge_service:build:39 - 构建业务 开始
+2026-09-05 15:24:32 | INFO     | request_id - 01a30d3f-367c-4b4f-80cf-b67eb0a9ab1d | app.services.meta_knowledge_service:build:57 - 保存表信息到meta库
+2026-09-05 15:24:32 | INFO     | request_id - e45df5ef-d2c4-45ff-aa92-d9982c061766 | app.services.meta_knowledge_service:build:61 - 保存字段信息到meta库
+2026-09-05 15:24:49 | INFO     | request_id - a1913d13-0fdb-4e9e-93b0-2b280ce1398f | app.services.meta_knowledge_service:build:65 - 为字段信息建立向量索引
+2026-09-05 15:24:50 | INFO     | request_id - 0b1b01cc-d6c3-4c3c-b35d-f3ce30c28dcf | app.services.meta_knowledge_service:build:69 - 为字段取值建立全文索引
+2026-09-05 15:24:50 | INFO     | request_id - 144b1867-c73d-41e1-b5c2-85c5177f9bc3 | app.services.meta_knowledge_service:build:76 - 保存指标信息到meta库1
+2026-09-05 15:24:50 | INFO     | request_id - dbd5e5ea-16fc-415f-9fee-6032031ffb16 | app.services.meta_knowledge_service:build:80 - 保存指标信息到meta库2
+2026-09-05 15:24:51 | INFO     | request_id - a182a0ec-4e0a-4b20-bf3c-03e48076f683 | app.services.meta_knowledge_service:build:84 - 为指标信息建立向量索引
+2026-09-05 15:24:51 | INFO     | request_id - 6c9b9039-895e-43eb-b565-4e06a6485c13 | app.services.meta_knowledge_service:build:86 - 构建业务 完成
+2026-09-05 15:24:51 | INFO     | request_id - e4c3c3fc-9062-438f-b66a-757556fdc87b | __main__:start_build:47 - 构建元数据知识库 完成
