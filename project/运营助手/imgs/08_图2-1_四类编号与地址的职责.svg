@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 292" width="680" height="292">
+  <rect x="0" y="0" width="680" height="292" fill="#FFFFFF"/>
+
+  <!-- 表头 -->
+  <rect x="20" y="20" width="640" height="34" rx="6" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="34" y="42" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">编号或地址</text>
+  <text x="234" y="42" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">谁创建</text>
+  <text x="344" y="42" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">用途</text>
+
+  <!-- 行1 -->
+  <rect x="20" y="58" width="640" height="48" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="20" y="58" width="200" height="48" rx="6" fill="#FAEDA8"/>
+  <text x="34" y="79" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">供应商 task_id</text>
+  <text x="34" y="93" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">图片或视频供应商</text>
+  <text x="234" y="86" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">供应商</text>
+  <text x="344" y="79" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">查询供应商是否仍在处理</text>
+  <text x="344" y="93" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">是否成功或失败</text>
+
+  <!-- 行2 -->
+  <rect x="20" y="112" width="640" height="48" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="20" y="112" width="200" height="48" rx="6" fill="#EEEDFE"/>
+  <text x="34" y="133" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">GenerationJob.id</text>
+  <text x="34" y="147" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">本项目数据库</text>
+  <text x="234" y="140" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">本项目</text>
+  <text x="344" y="133" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">追踪状态、重试、取消、事件</text>
+  <text x="344" y="147" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">下一篇章负责创建与推进</text>
+
+  <!-- 行3 -->
+  <rect x="20" y="166" width="640" height="48" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="20" y="166" width="200" height="48" rx="6" fill="#FAECE7"/>
+  <text x="34" y="187" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">供应商资源 URL</text>
+  <text x="34" y="201" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">常常有时效</text>
+  <text x="234" y="194" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">供应商</text>
+  <text x="344" y="187" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">只用于立即下载</text>
+  <text x="344" y="201" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">视频 URL 有效期约一小时</text>
+
+  <!-- 行4 -->
+  <rect x="20" y="220" width="640" height="48" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="20" y="220" width="200" height="48" rx="6" fill="#EAF3DE"/>
+  <text x="34" y="241" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">/uploads/generated/...</text>
+  <text x="34" y="255" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">本项目 uploads 目录</text>
+  <text x="234" y="248" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">本项目</text>
+  <text x="344" y="241" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">稳定展示和管理素材的地址</text>
+  <text x="344" y="255" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">素材记录保存的就是这个路径</text>
+</svg>

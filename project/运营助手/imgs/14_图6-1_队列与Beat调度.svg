@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect x="0" y="0" width="680" height="320" fill="#FFFFFF"/>
+  <rect x="8" y="8" width="664" height="304" rx="10" fill="#EAF3DE" stroke="#9DBE7A" stroke-width="1.5"/>
+  <text x="24" y="34" font-size="14" font-weight="700" fill="#1F2937">图 6-1　Worker 与 Celery 队列调度</text>
+  <text x="24" y="54" font-size="11" fill="#5A7A99">四队列路由与 Beat 周期调度关系</text>
+<rect x="40" y="90" width="150" height="46" rx="6" fill="#EEEDFE" stroke="#7A94AD" stroke-width="1.2"/><text x="115.0" y="117.0" font-size="12" fill="#1F2937" text-anchor="middle">Beat 调度</text>
+<rect x="40" y="160" width="150" height="40" rx="6" fill="#FDEBD0" stroke="#C9A86A" stroke-width="1.2"/><text x="115.0" y="184.0" font-size="11" fill="#1F2937" text-anchor="middle">每 5 秒</text>
+<rect x="40" y="220" width="150" height="40" rx="6" fill="#FDEBD0" stroke="#C9A86A" stroke-width="1.2"/><text x="115.0" y="244.0" font-size="11" fill="#1F2937" text-anchor="middle">每 30 秒</text>
+<line x1="190" y1="110" x2="250" y2="110" stroke="#5A7A99" stroke-width="1.6"/><polygon points="250,110 245,106 245,114" fill="#5A7A99"/>
+<line x1="190" y1="180" x2="250" y2="180" stroke="#C9A86A" stroke-width="1.6"/><polygon points="250,180 245,176 245,184" fill="#C9A86A"/>
+<line x1="190" y1="240" x2="250" y2="240" stroke="#C9A86A" stroke-width="1.6"/><polygon points="250,240 245,236 245,244" fill="#C9A86A"/>
+<rect x="250" y="80" width="160" height="42" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="330.0" y="105.0" font-size="12" fill="#1F2937" text-anchor="middle">generation 媒体生成</text>
+<rect x="250" y="128" width="160" height="42" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="330.0" y="153.0" font-size="12" fill="#1F2937" text-anchor="middle">agent 基础图运行</text>
+<rect x="250" y="176" width="160" height="42" rx="6" fill="#EEEDFE" stroke="#7A94AD" stroke-width="1.2"/><text x="330.0" y="201.0" font-size="12" fill="#1F2937" text-anchor="middle">agent.workflow 注册工作流</text>
+<rect x="250" y="224" width="160" height="42" rx="6" fill="#FAECE7" stroke="#7A94AD" stroke-width="1.2"/><text x="330.0" y="249.0" font-size="12" fill="#1F2937" text-anchor="middle">maintenance 维护与投递</text>
+<rect x="450" y="80" width="180" height="42" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="540.0" y="105.0" font-size="12" fill="#1F2937" text-anchor="middle">Worker 消费</text>
+<rect x="450" y="128" width="180" height="42" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="540.0" y="153.0" font-size="12" fill="#1F2937" text-anchor="middle">Worker 消费</text>
+<rect x="450" y="176" width="180" height="42" rx="6" fill="#EEEDFE" stroke="#7A94AD" stroke-width="1.2"/><text x="540.0" y="201.0" font-size="12" fill="#1F2937" text-anchor="middle">Worker 消费</text>
+<rect x="450" y="224" width="180" height="42" rx="6" fill="#FAECE7" stroke="#7A94AD" stroke-width="1.2"/><text x="540.0" y="249.0" font-size="12" fill="#1F2937" text-anchor="middle">Worker 消费</text>
+<line x1="410" y1="101" x2="450" y2="101" stroke="#5A7A99" stroke-width="1.6"/><polygon points="450,101 445,97 445,105" fill="#5A7A99"/>
+<line x1="410" y1="149" x2="450" y2="149" stroke="#5A7A99" stroke-width="1.6"/><polygon points="450,149 445,145 445,153" fill="#5A7A99"/>
+<line x1="410" y1="197" x2="450" y2="197" stroke="#5A7A99" stroke-width="1.6"/><polygon points="450,197 445,193 445,201" fill="#5A7A99"/>
+<line x1="410" y1="245" x2="450" y2="245" stroke="#5A7A99" stroke-width="1.6"/><polygon points="450,245 445,241 445,249" fill="#5A7A99"/>
+<text x="40" y="300" font-size="11" fill="#5A7A99">Beat 只发任务，Worker 负责消费；四个队列须全部被监听，否则对应任务不会执行</text>
+</svg>

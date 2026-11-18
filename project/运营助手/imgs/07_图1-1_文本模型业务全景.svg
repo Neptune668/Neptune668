@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7A94AD"/>
+    </marker>
+  </defs>
+  <rect width="680" height="600" fill="#FFFFFF"/>
+
+  <!-- 左侧：数据来源 -->
+  <rect x="16" y="16" width="188" height="300" rx="8" fill="#E6F1FB" stroke="#9CC3E5"/>
+  <text x="110" y="40" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F3A5F">商品与店铺上下文</text>
+  <text x="110" y="57" text-anchor="middle" font-size="10" fill="#2563EB">服务层只挑选本次任务所需字段</text>
+  <rect x="28" y="68" width="164" height="228" rx="6" fill="#FFFFFF" stroke="#D9E6F2"/>
+  <text x="38" y="90" font-size="11.5" fill="#22303F">Product 商品</text>
+  <text x="38" y="107" font-size="10" fill="#2563EB">名称 / 平台 / 价格 / 卖点</text>
+  <text x="38" y="132" font-size="11.5" fill="#22303F">Competitor 竞品</text>
+  <text x="38" y="149" font-size="10" fill="#2563EB">价格 / 标题 / 评价关键词</text>
+  <text x="38" y="174" font-size="11.5" fill="#22303F">PerformanceRecord</text>
+  <text x="38" y="191" font-size="10" fill="#2563EB">曝光 / 点击 / 转化 / ROI</text>
+  <text x="38" y="216" font-size="11.5" fill="#22303F">CreativePlan 素材方案</text>
+  <text x="38" y="233" font-size="10" fill="#2563EB">主图 / 视频脚本文字内容</text>
+  <text x="38" y="258" font-size="11.5" fill="#22303F">StoreInventoryRow</text>
+  <text x="38" y="275" font-size="10" fill="#2563EB">SKU 库存 / 预警线</text>
+  <text x="38" y="288" font-size="10" fill="#2563EB">Decimal 需转 str 才能 JSON 编码</text>
+
+  <!-- 右侧：六类文本业务 -->
+  <rect x="240" y="16" width="424" height="48" rx="8" fill="#EEEDFE" stroke="#A9A4E0"/>
+  <text x="452" y="37" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#3B3480">六类文本模型业务</text>
+  <text x="452" y="54" text-anchor="middle" font-size="10" fill="#6D28D9">全部产出结构化草稿，均需人工确认</text>
+
+  <path d="M 204 90 L 240 90" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="72" width="424" height="36" rx="8" fill="#E6F1FB" stroke="#9CC3E5"/>
+  <text x="252" y="95" font-size="12" font-weight="bold" fill="#1F3A5F">商品诊断</text>
+  <text x="360" y="95" font-size="10.5" fill="#2563EB">卖给谁 / 凭什么卖 / 风险 / 下一步</text>
+  <text x="252" y="104" font-size="9.5" fill="#2563EB">→ product_diagnoses</text>
+
+  <path d="M 204 140 L 240 140" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="122" width="424" height="36" rx="8" fill="#FAEDA8" stroke="#D8BE5A"/>
+  <text x="252" y="145" font-size="12" font-weight="bold" fill="#5C4A12">主图方案</text>
+  <text x="360" y="145" font-size="10.5" fill="#B45309">标题 / 布局 / 文案 / image_prompt</text>
+  <text x="252" y="154" font-size="9.5" fill="#B45309">→ creative_plans(type=main_image)</text>
+
+  <path d="M 204 190 L 240 190" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="172" width="424" height="36" rx="8" fill="#FDEBD0" stroke="#DDBE86"/>
+  <text x="252" y="195" font-size="12" font-weight="bold" fill="#6B4B14">视频脚本</text>
+  <text x="360" y="195" font-size="10.5" fill="#8A6D00">钩子 / 分镜 / 口播 / video_prompt</text>
+  <text x="252" y="204" font-size="9.5" fill="#8A6D00">→ creative_plans(type=video_script)</text>
+
+  <path d="M 204 240 L 240 240" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="222" width="424" height="36" rx="8" fill="#EAF3DE" stroke="#A8C98A"/>
+  <text x="252" y="245" font-size="12" font-weight="bold" fill="#2F4A20">店铺库存建议</text>
+  <text x="360" y="245" font-size="10.5" fill="#4E7A2A">低库存 / 锁定占比 / 补货与投放控制</text>
+  <text x="252" y="254" font-size="9.5" fill="#4E7A2A">→ 只返回建议，不改库存数量</text>
+
+  <path d="M 204 290 L 240 290" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="272" width="424" height="36" rx="8" fill="#FAECE7" stroke="#D9A79A"/>
+  <text x="252" y="295" font-size="12" font-weight="bold" fill="#7A2E1E">经营复盘</text>
+  <text x="360" y="295" font-size="10.5" fill="#8A3320">总结 / 洞察 / 下一步动作</text>
+  <text x="252" y="304" font-size="9.5" fill="#8A3320">→ review_reports（需有经营记录）</text>
+
+  <path d="M 204 340 L 240 340" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="322" width="424" height="50" rx="8" fill="#EEEDFE" stroke="#A9A4E0"/>
+  <text x="252" y="345" font-size="12" font-weight="bold" fill="#3B3480">投放建议 + 实验草稿</text>
+  <text x="360" y="345" font-size="10.5" fill="#6D28D9">人群 / 预算 / 素材测试 / 止损</text>
+  <text x="252" y="358" font-size="9.5" fill="#6D28D9">→ ad_recommendations / ad_experiments</text>
+  <text x="252" y="368" font-size="9.5" fill="#6D28D9">实验草稿由规则生成，不调用模型</text>
+
+  <!-- 底部：边界 -->
+  <rect x="16" y="384" width="648" height="86" rx="8" fill="#FDEBD0" stroke="#DDBE86"/>
+  <text x="36" y="408" font-size="13" font-weight="bold" fill="#6B4B14">本章边界</text>
+  <text x="36" y="429" font-size="11" fill="#5A4630">主图的 image_prompt 与视频的 video_prompt 都只是文字，供后续媒体生成章节使用，本章不生成图片或视频。</text>
+  <text x="36" y="449" font-size="11" fill="#5A4630">投放建议、复盘、库存建议只产生待审阅记录，不会调用广告平台、不会自动扣费或调整预算。</text>
+  <text x="36" y="466" font-size="10.5" fill="#2563EB">所有结果都带 source 字段：llm 表示模型产出，rules 表示规则回退。</text>
+
+  <!-- 底部：案例 -->
+  <rect x="16" y="486" width="648" height="98" rx="8" fill="#EAF3DE" stroke="#A8C98A"/>
+  <text x="36" y="510" font-size="13" font-weight="bold" fill="#2F4A20">贯穿案例：便携装每日坚果</text>
+  <text x="36" y="531" font-size="11" fill="#33472A">商品售价 39.9，目标人群「通勤上班族」，卖点「独立小包装、控量、方便携带」，竞品 3 个价格 29.9 / 45 / 52。</text>
+  <text x="36" y="551" font-size="11" fill="#33472A">诊断给出「通勤补能」定位与中低价带判断，主图与视频脚本据此生成，投放建议与复盘都以该商品为对象。</text>
+  <text x="36" y="571" font-size="10.5" fill="#2563EB">案例数据为教学示例，课堂上请替换为自己的商品与竞品资料。</text>
+</svg>

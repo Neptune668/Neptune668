@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect x="0" y="0" width="680" height="290" fill="#FFFFFF"/>
+  <rect x="8" y="8" width="664" height="274" rx="10" fill="#EAF3DE" stroke="#9DBE7A" stroke-width="1.5"/>
+  <text x="24" y="34" font-size="14" font-weight="700" fill="#1F2937">图 7-1　两类 API 与 main 挂载</text>
+  <text x="24" y="54" font-size="11" fill="#5A7A99">路由文件与主应用的挂载关系</text>
+<rect x="40" y="90" width="220" height="50" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="150.0" y="119.0" font-size="12" fill="#1F2937" text-anchor="middle">main.py</text>
+<rect x="40" y="170" width="220" height="44" rx="6" fill="#FDEBD0" stroke="#C9A86A" stroke-width="1.2"/><text x="150.0" y="196.0" font-size="11" fill="#1F2937" text-anchor="middle">前缀 /api/v1</text>
+<line x1="260" y1="112" x2="310" y2="112" stroke="#5A7A99" stroke-width="1.6"/><polygon points="310,112 305,108 305,116" fill="#5A7A99"/>
+<rect x="310" y="90" width="200" height="50" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="410.0" y="119.0" font-size="12" fill="#1F2937" text-anchor="middle">agent-runs 路由</text>
+<line x1="260" y1="192" x2="310" y2="192" stroke="#5A7A99" stroke-width="1.6"/><polygon points="310,192 305,188 305,196" fill="#5A7A99"/>
+<rect x="310" y="170" width="200" height="50" rx="6" fill="#EEEDFE" stroke="#7A94AD" stroke-width="1.2"/><text x="410.0" y="199.0" font-size="12" fill="#1F2937" text-anchor="middle">agent-platform 路由</text>
+<rect x="540" y="90" width="110" height="40" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="595.0" y="114.0" font-size="11" fill="#1F2937" text-anchor="middle">商品诊断</text>
+<rect x="540" y="170" width="110" height="40" rx="6" fill="#EEEDFE" stroke="#7A94AD" stroke-width="1.2"/><text x="595.0" y="194.0" font-size="11" fill="#1F2937" text-anchor="middle">平台任务</text>
+<line x1="510" y1="112" x2="540" y2="110" stroke="#5A7A99" stroke-width="1.6"/><polygon points="540,110 535,106 535,114" fill="#5A7A99"/>
+<line x1="510" y1="192" x2="540" y2="190" stroke="#5A7A99" stroke-width="1.6"/><polygon points="540,190 535,186 535,194" fill="#5A7A99"/>
+<text x="40" y="270" font-size="11" fill="#5A7A99">两个路由均挂载在 /api/v1 下；health 路由不挂前缀，其余业务路由统一前缀</text>
+</svg>

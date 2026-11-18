@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="680" height="400">
+  <rect x="0" y="0" width="680" height="400" fill="#FFFFFF"/>
+
+  <rect x="24" y="20" width="300" height="76" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="30" width="276" height="56" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="49" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">任务：使用者的业务目标</text>
+  <text x="48" y="68" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">业务线、标题、意图、范围、风险级别</text>
+  <text x="48" y="85" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">结果摘要、版本清单、取消时间</text>
+
+  <rect x="356" y="20" width="300" height="76" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="368" y="30" width="276" height="56" rx="6" fill="#FFFFFF"/>
+  <text x="380" y="49" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">运行：某次技术执行实例</text>
+  <text x="380" y="68" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">线程标识、尝试次数、状态、预算与用量</text>
+  <text x="380" y="85" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">草稿、质量报告、租约与超时时间</text>
+
+  <path d="M 324 58 L 352 58" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="356,58 349,54 349,62" fill="#7A94AD"/>
+  <text x="340" y="48" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99" text-anchor="middle">一对多</text>
+
+  <rect x="356" y="116" width="300" height="60" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="368" y="126" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="380" y="144" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">运行一：首次执行</text>
+  <text x="380" y="161" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">尝试次数为一，可能停在待审核</text>
+
+  <rect x="356" y="190" width="300" height="60" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="368" y="200" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="380" y="218" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">运行二：恢复执行</text>
+  <text x="380" y="235" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">同一线程标识，收到人工决定后继续</text>
+
+  <rect x="356" y="264" width="300" height="60" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="368" y="274" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="380" y="292" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">运行三：重试执行</text>
+  <text x="380" y="309" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">尝试次数累加，用量账本继续累计</text>
+
+  <path d="M 506 96 L 506 112" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="506,116 502,109 510,109" fill="#7A94AD"/>
+  <path d="M 506 176 L 506 190" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="506,190 502,183 510,183" fill="#7A94AD"/>
+  <path d="M 506 250 L 506 264" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="506,264 502,257 510,257" fill="#7A94AD"/>
+
+  <rect x="24" y="116" width="300" height="208" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="128" width="276" height="184" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="148" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">为什么要分成两层</text>
+  <text x="48" y="170" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">目标不会因为一次技术失败而消失</text>
+  <text x="48" y="190" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">重试与恢复只换运行，不重建任务</text>
+  <text x="48" y="210" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">界面展示任务进度，排查看运行事件</text>
+  <text x="48" y="236" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">两张表的状态会同步</text>
+  <text x="48" y="256" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">运行推进时，任务跟随更新为</text>
+  <text x="48" y="274" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">执行中、待审批或已完成</text>
+  <text x="48" y="294" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">检查点只负责技术恢复</text>
+  <text x="48" y="312" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">不能替代业务库里的运行事实</text>
+
+  <rect x="24" y="340" width="632" height="42" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="40" y="366" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">一句话记忆：任务回答「要什么」，运行回答「这次跑得怎么样」</text>
+</svg>

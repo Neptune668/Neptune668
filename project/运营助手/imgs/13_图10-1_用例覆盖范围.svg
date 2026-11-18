@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 456" width="680" height="456">
+<rect width="680" height="456" fill="#FFFFFF"/>
+<rect x="40" y="24" width="600" height="68" rx="8" fill="#E6F1FB"/>
+<rect x="46" y="30" width="588" height="56" rx="6" fill="#FFFFFF"/>
+<text x="62" y="52" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">流程暂停与返修（3 条）</text>
+<text x="62" y="74" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">正常路径停在人审、一次返修后通过、达到返修上限交人工</text>
+<rect x="40" y="108" width="600" height="68" rx="8" fill="#EAF3DE"/>
+<rect x="46" y="114" width="588" height="56" rx="6" fill="#FFFFFF"/>
+<text x="62" y="136" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">三种恢复决定（3 条）</text>
+<text x="62" y="158" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">批准后完成、采用编辑版本、驳回不落草稿</text>
+<rect x="40" y="192" width="600" height="68" rx="8" fill="#FAEDA8"/>
+<rect x="46" y="198" width="588" height="56" rx="6" fill="#FFFFFF"/>
+<text x="62" y="220" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">基础设施边界（3 条）</text>
+<text x="62" y="242" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">脱敏与预算截断、越权工具被拒绝、固定用例清单完整</text>
+<rect x="40" y="276" width="600" height="68" rx="8" fill="#FDEBD0"/>
+<rect x="46" y="282" width="588" height="56" rx="6" fill="#FFFFFF"/>
+<text x="62" y="304" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">组件（2 条）</text>
+<text x="62" y="326" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">模块可导入、检查点读取配置属性</text>
+<rect x="40" y="364" width="600" height="76" rx="8" fill="#EEEDFE"/>
+<rect x="46" y="370" width="588" height="64" rx="6" fill="#FFFFFF"/>
+<text x="62" y="388" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">执行方式</text>
+<text x="62" y="408" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">四个测试文件一起执行，预期二十项通过，全程使用模型替身</text>
+<text x="62" y="426" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">后三组不建图，直接断言被图复用的基础设施</text>
+</svg>

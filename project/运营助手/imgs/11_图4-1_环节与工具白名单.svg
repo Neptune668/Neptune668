@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="680" height="500">
+  <rect x="0" y="0" width="680" height="500" fill="#FFFFFF"/>
+  <rect x="40" y="24" width="300" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="34" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="51" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">product_context_agent</text>
+  <text x="64" y="69" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">允许 product_context.read，只读取经营数据</text>
+  <rect x="40" y="96" width="300" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="106" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="123" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">diagnosis_agent</text>
+  <text x="64" y="141" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">允许 model.complete，输入来自共享状态</text>
+  <rect x="40" y="168" width="300" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="178" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="195" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">creative_strategy_agent</text>
+  <text x="64" y="213" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">允许 model.complete，消费上游上下文</text>
+  <rect x="40" y="240" width="300" height="60" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="250" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="267" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">quality_review_agent</text>
+  <text x="64" y="285" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">无工具，纯规则检查已有数据</text>
+  <rect x="40" y="312" width="300" height="60" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="322" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="339" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">human_review_gate</text>
+  <text x="64" y="357" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">无工具，暂停等外部决定</text>
+  <rect x="40" y="384" width="300" height="60" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="394" width="276" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="411" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">finalize_output</text>
+  <text x="64" y="429" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">允许 agent_output.persist，唯一的写入口</text>
+  <rect x="440" y="36" width="200" height="64" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="452" y="46" width="176" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="462" y="66" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">product_context.read</text>
+  <text x="462" y="82" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">读取商品与竞品经营上下文</text>
+  <rect x="440" y="110" width="200" height="64" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="452" y="120" width="176" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="462" y="140" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">model.complete</text>
+  <text x="462" y="156" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">发起一次文本生成</text>
+  <rect x="440" y="184" width="200" height="64" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="452" y="194" width="176" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="462" y="214" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">agent_output.persist</text>
+  <text x="462" y="230" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">写入审核放行的正式结果</text>
+  <rect x="440" y="262" width="200" height="60" rx="8" fill="#F1F5F9" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="452" y="272" width="176" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="462" y="288" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">无工具的环节</text>
+  <text x="462" y="306" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">质量审查与人审拿到空集合</text>
+  <rect x="440" y="344" width="200" height="132" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="452" y="354" width="176" height="112" rx="6" fill="#FFFFFF"/>
+  <text x="462" y="374" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">两条纪律</text>
+  <text x="462" y="396" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">诊断与创意都拿不到读取工具</text>
+  <text x="462" y="412" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">只有收尾节点持有写工具</text>
+  <text x="462" y="428" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">且只在人审放行后执行</text>
+  <text x="462" y="444" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">模型从头到尾没有</text>
+  <text x="462" y="460" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">直接读写业务的通路</text>
+  <path d="M 340 54 L 388 54 L 388 68 L 432 68" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="440,68 433,64 433,72" fill="#7A94AD"/>
+  <path d="M 340 126 L 400 126 L 400 132 L 432 132" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="440,132 433,128 433,136" fill="#7A94AD"/>
+  <path d="M 340 198 L 414 198 L 414 148 L 432 148" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="440,148 433,144 433,152" fill="#7A94AD"/>
+  <path d="M 340 270 L 386 270 L 386 286 L 432 286" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="440,286 433,282 433,290" fill="#94A3B8"/>
+  <path d="M 340 342 L 404 342 L 404 302 L 432 302" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="440,302 433,298 433,306" fill="#94A3B8"/>
+  <path d="M 340 414 L 424 414 L 424 216 L 432 216" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="440,216 433,212 433,220" fill="#7A94AD"/>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 460" width="680" height="460">
+  <rect x="0" y="0" width="680" height="460" fill="#FFFFFF"/>
+
+  <rect x="30" y="20" width="280" height="34" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="170" y="43" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#1F2937" text-anchor="middle">单次模型调用</text>
+
+  <rect x="370" y="20" width="280" height="34" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="510" y="43" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#1F2937" text-anchor="middle">受控多 Agent 协作</text>
+
+  <rect x="30" y="76" width="280" height="56" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="42" y="86" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="54" y="101" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">输入资料</text>
+  <text x="54" y="116" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">人自己准备好商品与竞品资料</text>
+
+  <rect x="30" y="156" width="280" height="56" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="42" y="166" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="54" y="181" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">一次调用，直接出结果</text>
+  <text x="54" y="196" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">中间发生了什么无人知晓</text>
+
+  <rect x="30" y="236" width="280" height="56" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="42" y="246" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="54" y="261" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">结构化结果</text>
+  <text x="54" y="276" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">好与不好只能靠人自己看</text>
+
+  <rect x="30" y="322" width="280" height="70" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="46" y="345" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">六处不足</text>
+  <text x="46" y="363" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">无共享状态、无权限边界</text>
+  <text x="46" y="380" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">无质量门、无过程记录</text>
+
+  <rect x="370" y="76" width="280" height="56" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="382" y="86" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="101" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">运营目标进入</text>
+  <text x="394" y="116" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">一句话，不是一串接口顺序</text>
+
+  <rect x="370" y="156" width="280" height="56" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="382" y="166" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="181" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">路由到已注册业务线</text>
+  <text x="394" y="196" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">建立任务与运行，记录版本</text>
+
+  <rect x="370" y="236" width="280" height="56" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="382" y="246" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="261" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">角色依次执行，写回状态</text>
+  <text x="394" y="276" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">工具受白名单与策略约束</text>
+
+  <rect x="370" y="316" width="280" height="56" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="382" y="326" width="256" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="341" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">风险动作暂停，等待拍板</text>
+  <text x="394" y="356" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">可审核草稿，不是终稿</text>
+
+  <rect x="370" y="396" width="280" height="40" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="386" y="421" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">六处不足被六类约束收口</text>
+
+  <path d="M 170 132 L 170 152" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="170,156 166,149 174,149" fill="#7A94AD"/>
+  <path d="M 170 212 L 170 232" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="170,236 166,229 174,229" fill="#7A94AD"/>
+  <path d="M 170 292 L 170 318" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="170,322 166,315 174,315" fill="#B0917F"/>
+
+  <path d="M 510 132 L 510 152" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="510,156 506,149 514,149" fill="#7A94AD"/>
+  <path d="M 510 212 L 510 232" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="510,236 506,229 514,229" fill="#7A94AD"/>
+  <path d="M 510 292 L 510 312" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="510,316 506,309 514,309" fill="#7A94AD"/>
+  <path d="M 510 372 L 510 392" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="510,396 506,389 514,389" fill="#7A94AD"/>
+
+  <path d="M 314 250 L 366 250" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="5 3" fill="none"/>
+  <polygon points="370,250 363,246 363,254" fill="#B0917F"/>
+  <text x="340" y="240" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#B0917F" text-anchor="middle">演进</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 364" width="680" height="364">
+<rect width="680" height="364" fill="#FFFFFF"/>
+<rect x="40" y="24" width="600" height="52" rx="8" fill="#E6F1FB"/>
+<rect x="46" y="30" width="588" height="40" rx="6" fill="#FFFFFF"/>
+<text x="64" y="46" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">输入：已经校验过的商品上下文（可带上轮反馈）</text>
+<text x="64" y="64" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">三个角色都不直接操作数据库，只返回结构化草稿</text>
+<rect x="40" y="100" width="180" height="108" rx="8" fill="#EAF3DE"/>
+<rect x="46" y="106" width="168" height="96" rx="6" fill="#FFFFFF"/>
+<text x="58" y="126" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">DiagnosisAgent</text>
+<text x="58" y="148" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">产出诊断草稿</text>
+<text x="58" y="168" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#94A3B8" font-weight="normal">模型失败退回规则</text>
+<path d="M 130 76 L 130 94" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="130,94 126,87 134,87" fill="#7A94AD"/>
+<rect x="250" y="100" width="180" height="108" rx="8" fill="#FAEDA8"/>
+<rect x="256" y="106" width="168" height="96" rx="6" fill="#FFFFFF"/>
+<text x="268" y="126" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">CreativeStrategyAgent</text>
+<text x="268" y="148" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">产出三到六份创意方向</text>
+<text x="268" y="168" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#94A3B8" font-weight="normal">模型失败退回规则</text>
+<path d="M 340 76 L 340 94" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,94 336,87 344,87" fill="#7A94AD"/>
+<rect x="460" y="100" width="180" height="108" rx="8" fill="#EEEDFE"/>
+<rect x="466" y="106" width="168" height="96" rx="6" fill="#FFFFFF"/>
+<text x="478" y="126" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">QualityReviewAgent</text>
+<text x="478" y="148" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">产出质量报告</text>
+<text x="478" y="168" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#94A3B8" font-weight="normal">不调用模型，只跑规则</text>
+<path d="M 550 76 L 550 94" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="550,94 546,87 554,87" fill="#7A94AD"/>
+<rect x="40" y="236" width="600" height="88" rx="8" fill="#FDEBD0"/>
+<rect x="46" y="242" width="588" height="76" rx="6" fill="#FFFFFF"/>
+<text x="64" y="262" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">统一出口</text>
+<text x="64" y="282" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">产物结构完全一致，区别在 source 与 provenance</text>
+<text x="64" y="300" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">source 说明谁写的，provenance 说明为什么</text>
+<path d="M 340 208 L 340 232" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,232 336,225 344,225" fill="#7A94AD"/>
+<text x="64" y="348" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#94A3B8" font-weight="normal">规则检查覆盖建议条数、创意数量、角度差异、禁止表达与证明点</text>
+</svg>

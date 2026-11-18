@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 460" width="680" height="460">
+  <rect x="0" y="0" width="680" height="460" fill="#FFFFFF"/>
+  <rect x="40" y="24" width="290" height="48" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="34" width="266" height="28" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="53" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">预算总量 AGENT_MAX_TOTAL_TOKENS</text>
+  <rect x="350" y="24" width="290" height="48" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="362" y="34" width="266" height="28" rx="6" fill="#FFFFFF"/>
+  <text x="374" y="53" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">已累计用量 usage 来自上次累加</text>
+  <rect x="40" y="96" width="190" height="124" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="106" width="166" height="104" rx="6" fill="#FFFFFF"/>
+  <text x="56" y="126" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">第 1 步 调用之前</text>
+  <text x="56" y="146" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">remaining_model_tokens()</text>
+  <text x="56" y="164" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">输入 运行预算</text>
+  <text x="56" y="182" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已累计用量 本次申请量</text>
+  <text x="56" y="200" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">无余量即抛预算异常</text>
+  <rect x="245" y="96" width="190" height="124" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="257" y="106" width="166" height="104" rx="6" fill="#FFFFFF"/>
+  <text x="261" y="126" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">模型真正发生调用</text>
+  <text x="261" y="146" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">max_output_tokens</text>
+  <text x="261" y="164" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">取第 1 步给出的允许量</text>
+  <text x="261" y="182" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">钱在这一步花出去</text>
+  <text x="261" y="200" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">花完就无法追回</text>
+  <rect x="450" y="96" width="190" height="124" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="462" y="106" width="166" height="104" rx="6" fill="#FFFFFF"/>
+  <text x="466" y="126" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">第 2 步 调用之后</text>
+  <text x="466" y="146" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">normalize_model_usage()</text>
+  <text x="466" y="164" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">输入 供应商原始用量</text>
+  <text x="466" y="182" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">输出 统一形状用量</text>
+  <text x="466" y="200" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">抹平格式差异</text>
+  <rect x="245" y="244" width="190" height="100" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="257" y="254" width="166" height="80" rx="6" fill="#FFFFFF"/>
+  <text x="261" y="274" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">第 3 步</text>
+  <text x="261" y="292" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">merge_model_usage()</text>
+  <text x="261" y="310" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">累计用量加本次用量</text>
+  <text x="261" y="328" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">写回共享状态 usage</text>
+  <path d="M 185 72 L 185 92" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="185,96 181,89 189,89" fill="#7A94AD"/>
+  <path d="M 495 72 L 495 84 L 150 84 L 150 92" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="150,96 146,89 154,89" fill="#7A94AD"/>
+  <path d="M 230 158 L 241 158" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="245,158 238,154 238,162" fill="#7A94AD"/>
+  <path d="M 435 158 L 446 158" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="450,158 443,154 443,162" fill="#7A94AD"/>
+  <path d="M 340 220 L 340 240" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="340,244 336,237 344,237" fill="#7A94AD"/>
+  <path d="M 545 220 L 545 232 L 400 232 L 400 240" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="400,244 396,237 404,237" fill="#7A94AD"/>
+  <rect x="40" y="364" width="600" height="64" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="374" width="576" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="392" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">第 1 步在调用之前，第 2、3 步在调用之后</text>
+  <text x="64" y="410" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">调用前用剩余额度截断申请量，超支在发生之前被排除；调用后统计只能用于事后追责</text>
+</svg>

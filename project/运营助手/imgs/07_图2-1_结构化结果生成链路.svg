@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" width="680" height="560" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7A94AD"/>
+    </marker>
+    <marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C0705A"/>
+    </marker>
+  </defs>
+  <rect width="680" height="560" fill="#FFFFFF"/>
+
+  <!-- 第一步 -->
+  <rect x="140" y="16" width="360" height="52" rx="8" fill="#E6F1FB" stroke="#9CC3E5"/>
+  <text x="320" y="38" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F3A5F">第一步 组织上下文</text>
+  <text x="320" y="57" text-anchor="middle" font-size="10.5" fill="#2563EB">只挑本次任务字段；Decimal 转 str；不发密钥与整库数据</text>
+  <path d="M 320 68 L 320 92" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 第二步 -->
+  <rect x="140" y="94" width="360" height="52" rx="8" fill="#EAF3DE" stroke="#A8C98A"/>
+  <text x="320" y="116" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#2F4A20">第二步 构造两段消息</text>
+  <text x="320" y="135" text-anchor="middle" font-size="10.5" fill="#4E7A2A">system 定边界只出 JSON；user 只承载分析材料</text>
+  <path d="M 320 146 L 320 170" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 第三步 -->
+  <rect x="140" y="172" width="360" height="56" rx="8" fill="#FAEDA8" stroke="#D8BE5A"/>
+  <text x="320" y="194" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#5C4A12">第三步 统一调用文本模型</text>
+  <text x="320" y="212" text-anchor="middle" font-size="10.5" fill="#B45309">create_json_chat_completion()</text>
+  <text x="320" y="226" text-anchor="middle" font-size="10" fill="#B45309">返回 (parsed dict, raw_response)</text>
+
+  <path d="M 320 228 L 320 258" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <path d="M 500 200 L 588 200 L 588 300" stroke="#C0705A" stroke-width="1.4" fill="none" marker-end="url(#arb)"/>
+
+  <!-- 第四步 -->
+  <rect x="140" y="260" width="360" height="56" rx="8" fill="#EEEDFE" stroke="#A9A4E0"/>
+  <text x="320" y="282" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#3B3480">第四步 业务合同校验</text>
+  <text x="320" y="300" text-anchor="middle" font-size="10.5" fill="#6D28D9">Pydantic 模型校验字段、类型与数量约束</text>
+  <text x="320" y="314" text-anchor="middle" font-size="10" fill="#6D28D9">不合格抛 ValidationError</text>
+
+  <path d="M 320 316 L 320 348" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 结果分叉 -->
+  <rect x="60" y="350" width="250" height="56" rx="8" fill="#E6F1FB" stroke="#9CC3E5"/>
+  <text x="185" y="372" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3A5F">校验通过</text>
+  <text x="185" y="391" text-anchor="middle" font-size="10.5" fill="#2563EB">source = "llm"，raw_output 记模型与用量</text>
+
+  <rect x="330" y="350" width="250" height="56" rx="8" fill="#FAECE7" stroke="#D9A79A"/>
+  <text x="455" y="372" text-anchor="middle" font-size="13" font-weight="bold" fill="#7A2E1E">未配置 / 上游失败 / 结构不合格</text>
+  <text x="455" y="391" text-anchor="middle" font-size="10.5" fill="#8A3320">本地规则生成草稿，source = "rules"</text>
+
+  <path d="M 185 406 L 185 434" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <path d="M 455 406 L 455 434" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 汇合 -->
+  <rect x="140" y="436" width="360" height="52" rx="8" fill="#EAF3DE" stroke="#A8C98A"/>
+  <text x="320" y="458" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#2F4A20">带 source 标记的结构化字典</text>
+  <text x="320" y="477" text-anchor="middle" font-size="10.5" fill="#4E7A2A">字段固定、可编辑、可继续被下游业务读取</text>
+  <path d="M 320 488 L 320 512" stroke="#7A94AD" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+
+  <rect x="180" y="514" width="280" height="32" rx="8" fill="#E6F1FB" stroke="#9CC3E5"/>
+  <text x="320" y="535" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3A5F">路由保存为业务记录并等待人工确认</text>
+
+  <!-- 右侧异常分支 -->
+  <rect x="516" y="300" width="150" height="132" rx="8" fill="#FAECE7" stroke="#D9A79A"/>
+  <text x="591" y="322" text-anchor="middle" font-size="12" font-weight="bold" fill="#7A2E1E">被捕获的三类异常</text>
+  <text x="530" y="344" font-size="10.5" fill="#5A3A32">LLMNotConfiguredError</text>
+  <text x="530" y="362" font-size="10.5" fill="#5A3A32">LLMResponseError</text>
+  <text x="530" y="380" font-size="10.5" fill="#5A3A32">ValidationError</text>
+  <text x="530" y="404" font-size="10" fill="#2563EB">统一在入口函数 try/except</text>
+  <text x="530" y="420" font-size="10" fill="#2563EB">转入规则分支，不向调用方抛错</text>
+</svg>

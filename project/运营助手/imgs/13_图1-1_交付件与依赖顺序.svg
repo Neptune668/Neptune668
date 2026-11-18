@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 502" width="680" height="502">
+<rect width="680" height="502" fill="#FFFFFF"/>
+<rect x="40" y="24" width="600" height="86" rx="8" fill="#E6F1FB"/>
+<rect x="46" y="30" width="588" height="74" rx="6" fill="#FFFFFF"/>
+<text x="62" y="50" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13" fill="#1F2937" font-weight="bold">基础设施层</text>
+<rect x="62" y="60" width="135" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="72" y="82" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">agent_leases.py</text>
+<rect x="209" y="60" width="135" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="219" y="82" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">tool_gateway.py</text>
+<rect x="356" y="60" width="135" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="366" y="82" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">specialists.py</text>
+<rect x="503" y="60" width="135" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="513" y="82" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">persistence.py</text>
+<path d="M 340 110 L 340 134" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,134 336,127 344,127" fill="#7A94AD"/>
+<rect x="40" y="140" width="600" height="86" rx="8" fill="#EAF3DE"/>
+<rect x="46" y="146" width="588" height="74" rx="6" fill="#FFFFFF"/>
+<text x="62" y="166" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13" fill="#1F2937" font-weight="bold">编排层</text>
+<rect x="62" y="176" width="282" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="72" y="198" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">graph.py</text>
+<rect x="356" y="176" width="282" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="366" y="198" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">platform_graph.py</text>
+<path d="M 340 226 L 340 250" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,250 336,243 344,243" fill="#7A94AD"/>
+<rect x="40" y="256" width="600" height="86" rx="8" fill="#FAEDA8"/>
+<rect x="46" y="262" width="588" height="74" rx="6" fill="#FFFFFF"/>
+<text x="62" y="282" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13" fill="#1F2937" font-weight="bold">评估层</text>
+<rect x="62" y="292" width="282" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="72" y="314" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">evaluation.py</text>
+<rect x="356" y="292" width="282" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="366" y="314" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">product_operation_cases.json</text>
+<path d="M 340 342 L 340 366" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,366 336,359 344,359" fill="#7A94AD"/>
+<rect x="40" y="372" width="600" height="86" rx="8" fill="#FDEBD0"/>
+<rect x="46" y="378" width="588" height="74" rx="6" fill="#FFFFFF"/>
+<text x="62" y="398" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13" fill="#1F2937" font-weight="bold">验证层</text>
+<rect x="62" y="408" width="282" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="72" y="430" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">test_agent_workflow.py</text>
+<rect x="356" y="408" width="282" height="34" rx="6" fill="#FFFFFF" stroke="#C9D6E5"/>
+<text x="366" y="430" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">test_agent_components.py</text>
+<text x="62" y="486" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#94A3B8" font-weight="normal">下面一层只依赖上面一层，顺着顺序写，每一步都能立刻导入检查</text>
+</svg>

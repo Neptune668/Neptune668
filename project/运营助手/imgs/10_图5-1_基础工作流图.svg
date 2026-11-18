@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="680" height="500">
+  <rect x="0" y="0" width="680" height="500" fill="#FFFFFF"/>
+
+  <rect x="240" y="18" width="200" height="48" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="252" y="28" width="176" height="28" rx="6" fill="#FFFFFF"/>
+  <text x="264" y="47" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">开始</text>
+  <text x="264" y="62" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">目标与范围已确定</text>
+
+  <rect x="240" y="86" width="200" height="56" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="252" y="96" width="176" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="264" y="111" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">商品上下文节点</text>
+  <text x="264" y="128" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">不调用模型</text>
+
+  <rect x="240" y="162" width="200" height="56" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="252" y="172" width="176" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="264" y="187" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">诊断节点</text>
+  <text x="264" y="204" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">调用模型，失败有规则兜底</text>
+
+  <rect x="240" y="238" width="200" height="56" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="252" y="248" width="176" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="264" y="263" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">创意策略节点</text>
+  <text x="264" y="280" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">调用模型，失败有规则兜底</text>
+
+  <rect x="240" y="314" width="200" height="56" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="252" y="324" width="176" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="264" y="339" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">质量合规节点</text>
+  <text x="264" y="356" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">纯规则，不调用模型</text>
+
+  <rect x="24" y="238" width="180" height="56" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="248" width="156" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="263" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">准备返修节点</text>
+  <text x="48" y="280" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">次数加一并整理反馈</text>
+
+  <rect x="476" y="314" width="180" height="56" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="488" y="324" width="156" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="500" y="339" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">人工审核节点</text>
+  <text x="500" y="356" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">暂停等待拍板</text>
+
+  <rect x="476" y="400" width="180" height="56" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="488" y="410" width="156" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="500" y="425" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">收尾落库节点</text>
+  <text x="500" y="442" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">通过保存，驳回不落库</text>
+
+  <rect x="240" y="400" width="200" height="56" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="252" y="410" width="176" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="264" y="425" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">结束</text>
+  <text x="264" y="442" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已完成或已驳回</text>
+
+  <path d="M 340 66 L 340 86" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="340,86 336,79 344,79" fill="#7A94AD"/>
+  <path d="M 340 142 L 340 162" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="340,162 336,155 344,155" fill="#7A94AD"/>
+  <path d="M 340 218 L 340 238" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="340,238 336,231 344,231" fill="#7A94AD"/>
+  <path d="M 340 294 L 340 314" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="340,314 336,307 344,307" fill="#7A94AD"/>
+  <path d="M 440 342 L 472 342" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="476,342 469,338 469,346" fill="#7A94AD"/>
+  <path d="M 566 370 L 566 400" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="566,400 562,393 570,393" fill="#7A94AD"/>
+  <path d="M 476 428 L 444 428" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="440,428 447,424 447,432" fill="#7A94AD"/>
+
+  <path d="M 240 342 L 210 342 L 210 294 L 210 266" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="210,266 206,273 214,273" fill="#B0917F"/>
+  <text x="150" y="332" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#B0917F">未通过且未超上限</text>
+  <text x="150" y="350" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#B0917F">回到诊断节点重跑</text>
+
+  <text x="452" y="300" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">通过或已达上限</text>
+
+  <rect x="24" y="400" width="180" height="56" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="410" width="156" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="425" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">四个业务角色</text>
+  <text x="48" y="442" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">加三个控制节点共七个</text>
+</svg>
