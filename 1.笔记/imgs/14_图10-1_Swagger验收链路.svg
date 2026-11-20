@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 230" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect x="0" y="0" width="720" height="230" fill="#FFFFFF"/>
+  <rect x="8" y="8" width="704" height="214" rx="10" fill="#EAF3DE" stroke="#9DBE7A" stroke-width="1.5"/>
+  <text x="24" y="34" font-size="14" font-weight="700" fill="#1F2937">图 10-1　Swagger 商品诊断验收链路</text>
+  <text x="24" y="54" font-size="11" fill="#5A7A99">基础入口六步端到端验收</text>
+<rect x="30" y="120" width="95" height="46" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="77.5" y="147.0" font-size="10" fill="#1F2937" text-anchor="middle">POST 创建运行</text>
+<line x1="125" y1="143" x2="133" y2="143" stroke="#5A7A99" stroke-width="1.6"/><polygon points="133,143 128,139 128,147" fill="#5A7A99"/>
+<rect x="138" y="120" width="95" height="46" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="185.5" y="147.0" font-size="10" fill="#1F2937" text-anchor="middle">Worker 生成草稿</text>
+<line x1="233" y1="143" x2="241" y2="143" stroke="#5A7A99" stroke-width="1.6"/><polygon points="241,143 236,139 236,147" fill="#5A7A99"/>
+<rect x="246" y="120" width="95" height="46" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="293.5" y="147.0" font-size="10" fill="#1F2937" text-anchor="middle">GET 查询到 awaiting_review</text>
+<line x1="341" y1="143" x2="349" y2="143" stroke="#5A7A99" stroke-width="1.6"/><polygon points="349,143 344,139 344,147" fill="#5A7A99"/>
+<rect x="354" y="120" width="95" height="46" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="401.5" y="147.0" font-size="10" fill="#1F2937" text-anchor="middle">阅读草稿并提交审核</text>
+<line x1="449" y1="143" x2="457" y2="143" stroke="#5A7A99" stroke-width="1.6"/><polygon points="457,143 452,139 452,147" fill="#5A7A99"/>
+<rect x="462" y="120" width="95" height="46" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="509.5" y="147.0" font-size="10" fill="#1F2937" text-anchor="middle">恢复执行</text>
+<line x1="557" y1="143" x2="565" y2="143" stroke="#5A7A99" stroke-width="1.6"/><polygon points="565,143 560,139 560,147" fill="#5A7A99"/>
+<rect x="570" y="120" width="95" height="46" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="617.5" y="147.0" font-size="10" fill="#1F2937" text-anchor="middle">GET 查询到 completed</text>
+<text x="30" y="200" font-size="11" fill="#5A7A99">案例统一使用「便携装每日坚果」：提交商品 → 生成草稿 → 暂停审核 → 批准恢复 → 落库</text>
+</svg>

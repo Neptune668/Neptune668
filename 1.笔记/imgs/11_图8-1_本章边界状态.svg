@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 510" width="680" height="510">
+  <rect x="0" y="0" width="680" height="510" fill="#FFFFFF"/>
+  <rect x="40" y="24" width="600" height="84" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="34" width="576" height="64" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="54" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">数据边界</text>
+  <text x="64" y="74" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已做到 所有跨环节数据有闭合合同，字段、类型、长度、条数都被约束</text>
+  <text x="64" y="92" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">还没做到 还没有图去实际传递这些数据</text>
+  <rect x="40" y="118" width="600" height="84" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="128" width="576" height="64" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="148" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">权限边界</text>
+  <text x="64" y="168" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已做到 每个环节持有不可变的工具集合，越权与未知环节都抛错</text>
+  <text x="64" y="186" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">还没做到 只有静态白名单，尚未引入角色与风险级别的分级判定</text>
+  <rect x="40" y="212" width="600" height="84" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="222" width="576" height="64" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="242" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">预算边界</text>
+  <text x="64" y="262" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已做到 调用前按剩余额度截断申请量，耗尽即熔断</text>
+  <text x="64" y="280" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">还没做到 还没有真实的调用发生时被触发</text>
+  <rect x="40" y="306" width="600" height="84" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="316" width="576" height="64" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="336" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">时间边界</text>
+  <text x="64" y="356" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已做到 未涉及</text>
+  <text x="64" y="374" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">还没做到 执行超时、租约与到期回收都还没有实现</text>
+  <rect x="40" y="400" width="600" height="84" rx="8" fill="#FDEBD0" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="410" width="576" height="64" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="430" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">副作用边界</text>
+  <text x="64" y="450" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已做到 只有收尾节点持有写工具</text>
+  <text x="64" y="468" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">还没做到 写入前的审批门还没有实现</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" width="680" height="360">
+  <rect x="0" y="0" width="680" height="360" fill="#FFFFFF"/>
+
+  <rect x="250" y="20" width="180" height="48" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="262" y="30" width="156" height="28" rx="6" fill="#FFFFFF"/>
+  <text x="272" y="49" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">dispatch_generation_job</text>
+
+  <rect x="50" y="120" width="250" height="64" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="62" y="130" width="226" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="72" y="148" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">inline：BackgroundTasks</text>
+  <text x="72" y="165" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">add_task(run_generation_job, job_id)</text>
+
+  <rect x="380" y="100" width="250" height="56" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="392" y="110" width="226" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="402" y="127" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">celery：run_generation_job_task</text>
+  <text x="402" y="142" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">delay(job_id)，消息只带任务 ID</text>
+
+  <rect x="380" y="180" width="250" height="56" rx="8" fill="#EEEDFE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="392" y="190" width="226" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="402" y="207" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">Celery Worker 消费消息</text>
+  <text x="402" y="222" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">worker_id 记为 celery-worker</text>
+
+  <rect x="180" y="272" width="320" height="64" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="192" y="282" width="296" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="202" y="300" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">run_generation_job 同一份状态机</text>
+  <text x="202" y="317" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">行锁加状态检查，重复消息只执行一次</text>
+
+  <path d="M 300 68 L 300 92 L 175 92 L 175 118" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="175,120 171,113 179,113" fill="#7A94AD"/>
+  <path d="M 380 68 L 380 92 L 505 92 L 505 98" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="505,100 501,93 509,93" fill="#7A94AD"/>
+  <path d="M 505 156 L 505 178" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="505,180 501,173 509,173" fill="#7A94AD"/>
+  <path d="M 175 184 L 175 240 L 300 240 L 300 270" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="300,272 296,265 304,265" fill="#7A94AD"/>
+  <path d="M 505 236 L 505 240 L 380 240 L 380 270" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="380,272 376,265 384,265" fill="#7A94AD"/>
+</svg>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平台图业务流程</title>
+<style>
+  :root{
+    --navy:#0B2545; --blue:#1F4E79; --blue2:#185FA5; --line:#D5E0EC;
+    --soft:#F2F6FB; --muted:#5A7A99; --ink:#233C5A;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#EEF3F9;color:var(--navy);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:15px;}
+  .doc{max-width:1240px;margin:0 auto;background:#FFFFFF;
+    border:1px solid #DCE6F1;border-radius:14px;padding:48px 56px 64px;}
+  header{border-bottom:3px solid var(--blue);padding-bottom:24px;margin-bottom:32px;}
+  header .kicker{font-size:13px;color:var(--blue2);letter-spacing:2px;font-weight:600;margin:0 0 10px;}
+  header h1{font-size:30px;margin:0 0 10px;color:var(--navy);font-weight:700;letter-spacing:.5px;}
+  header .sub{font-size:15px;color:var(--muted);margin:0;
+    font-family:"SF Mono",Consolas,"Liberation Mono",monospace;}
+  h2{font-size:20px;color:var(--blue);margin:44px 0 14px;padding-left:14px;
+    border-left:5px solid var(--blue);font-weight:600;}
+  h3{font-size:16px;color:var(--ink);margin:26px 0 10px;font-weight:600;}
+  p{margin:10px 0;color:var(--ink);}
+  code{background:var(--soft);border:1px solid #E3ECF6;border-radius:5px;
+    padding:1px 6px;color:var(--blue2);font-family:"SF Mono",Consolas,monospace;font-size:13px;}
+  .note{background:#E6F1FB;border:1px solid #B5D4F4;border-left:5px solid #378ADD;
+    border-radius:10px;padding:18px 22px;margin:20px 0;}
+  .note b{color:var(--blue);}
+  figure{margin:24px 0 8px;background:#FAFCFF;border:1px solid var(--line);
+    border-radius:12px;padding:18px 16px 12px;}
+  figure svg{display:block;width:100%;height:auto;}
+  figcaption{text-align:center;color:var(--muted);font-size:13px;padding:8px 0 2px;}
+  .keypoints{margin:18px 0 8px;}
+  .kp{display:flex;gap:16px;padding:14px 18px;border:1px solid #E3ECF6;
+    border-radius:10px;margin-bottom:10px;background:#FFFFFF;}
+  .kp .fn{flex:0 0 34%;font-family:"SF Mono",Consolas,monospace;
+    font-size:13px;color:var(--blue2);font-weight:600;word-break:break-all;}
+  .kp .ds{flex:1;color:var(--ink);font-size:14px;}
+  .warn{background:#FAECE7;border:1px solid #F5C4B3;border-left:5px solid #D85A30;
+    border-radius:10px;padding:18px 22px;margin:20px 0;}
+  .warn ol{margin:10px 0 0;padding-left:22px;}
+  .warn li{margin:10px 0;color:#712B13;}
+  .tag{display:inline-block;font-size:12px;color:#0C447C;background:#E6F1FB;
+    border:1px solid #B5D4F4;border-radius:20px;padding:2px 12px;margin-right:8px;}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;}
+  th{background:#E6F1FB;color:#0C447C;font-weight:600;text-align:left;
+    padding:10px 12px;border:1px solid #C9D6E5;}
+  td{padding:9px 12px;border:1px solid #E2E8F0;color:var(--ink);vertical-align:top;}
+  td code{font-size:12px;}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;
+    color:var(--muted);font-size:13px;}
+
+  /* ---- 课件导航：左侧悬浮返回 ---- */
+  .back-home{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:9999;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    width:46px;padding:15px 0;background:#1F4E79;color:#fff;text-decoration:none;
+    border-radius:0 10px 10px 0;box-shadow:2px 0 12px rgba(11,37,69,.20);
+    font-family:inherit;transition:background .2s ease;}
+  .back-home:hover{background:#0B2545;}
+  .back-home .ba{font-size:26px;line-height:1;font-weight:400;}
+  .back-home .bt{font-size:12px;line-height:1.2;letter-spacing:2px;writing-mode:vertical-rl;}
+
+
+  html{scroll-behavior:smooth;}
+  h2,h3{scroll-margin-top:24px;}
+  .side-toc{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:9998;
+    width:100px;max-width:100px;max-height:76vh;overflow-y:auto;overflow-x:hidden;
+    background:#FAFBFC;border:1px solid #DDE2E8;border-right:none;
+    border-radius:6px 0 0 6px;box-shadow:-2px 2px 10px rgba(60,70,85,.08);
+    font-family:inherit;font-weight:400;scrollbar-width:thin;
+    scrollbar-color:#C6CDD6 #F0F2F5;}
+  .side-toc::-webkit-scrollbar{width:5px;}
+  .side-toc::-webkit-scrollbar-track{background:#F0F2F5;border-radius:5px;}
+  .side-toc::-webkit-scrollbar-thumb{background:#C6CDD6;border-radius:5px;}
+  .side-toc a{display:flex;align-items:center;text-decoration:none;color:#8A95A3;font-size:10.5px;font-weight:400;
+    line-height:1.4;white-space:normal;word-break:break-all;overflow-wrap:anywhere;
+    padding:6px 5px;border-bottom:1px solid #E8ECF1;
+    transition:background .15s,color .15s;}
+  .side-toc a:last-child{border-bottom:none;}
+  .side-toc a.lv2{color:#5A6675;font-weight:400;}
+  .side-toc a.lv3{padding-left:9px;font-size:10px;}
+  .side-toc a:hover{background:#F0F2F5;color:#5A6675;}
+  .side-toc a.active{background:#EFF2F6;color:#4A5666;}
+
+</style>
+</head>
+<body>
+<a class="back-home" href="00_Agent任务全链路解析.html" title="返回目录" aria-label="返回目录"><span class="ba">&#8249;</span><span class="bt">返回目录</span></a>
+
+<div class="doc">
+
+<header>
+  <p class="kicker">电商运营助手 · 调用链分析</p>
+  <h1>平台图（多工作流平台编排）</h1>
+  <p class="sub">POST /workspaces/{workspace_id}/agent/tasks 接口全链路分析</p>
+</header>
+
+<div class="note">
+<b>接口定位：</b>这个接口是 Agent 平台工作台「创建任务」的入口，路由在 <code>agent_platform.py</code>，函数名 <code>create_task()</code>，同步返回 202 + <code>AgentTaskRead</code>。整条链路分三段：同步创建 → 异步投递 → Worker 执行。其中有一处<strong>关键分流</strong>：Worker 拿到任务后先检查 <code>workflow_key</code>，若为 <code>product_diagnosis_optimization</code>（关键词路由的兜底值，也是默认任务），就转调基础图 <code>graph.py</code>，<b>不构建平台图</b>；只有显式指定其余六条工作流之一，才走 <code>platform_graph.py</code> 的平台图。以下按完整链路依次说明创建与投递、平台图拆解，并对照两条图的差异。
+</div>
+
+<h2 id="sec-1">一、同步创建阶段：从提交任务到 202 返回</h2>
+
+<p>前端在 Agent 工作台提交任务（自然语言意图，或选模板指定工作流）后，一次请求在<strong>同一个数据库事务里写四张表</strong>。与商品工作台入口不同，这条入口的四表写入<strong>无条件成立</strong>——没有「工作区没启用就跳过」的分支。整体流程：</p>
+
+<figure>
+<svg viewBox="0 0 1120 700" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>平台任务同步创建阶段流程图</title>
+<desc>从前端提交任务开始，经过路由层租户校验、服务层工作流裁决与四重校验、写四张表，提交后触发异步投递，最终返回 202 的主流程，含 403、409、422 三个拒绝分支。</desc>
+<defs>
+<marker id="pa1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#7A94AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="pa1r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<path d="M520 92 L520 124" fill="none" stroke="#7A94AD" stroke-width="1.6" marker-end="url(#pa1)"/>
+<path d="M520 196 L520 228" fill="none" stroke="#7A94AD" stroke-width="1.6" marker-end="url(#pa1)"/>
+<path d="M520 300 L520 332" fill="none" stroke="#7A94AD" stroke-width="1.6" marker-end="url(#pa1)"/>
+<path d="M520 404 L520 436" fill="none" stroke="#7A94AD" stroke-width="1.6" marker-end="url(#pa1)"/>
+<path d="M520 508 L520 540" fill="none" stroke="#7A94AD" stroke-width="1.6" marker-end="url(#pa1)"/>
+<path d="M520 612 L520 644" fill="none" stroke="#7A94AD" stroke-width="1.6" marker-end="url(#pa1)"/>
+
+<path d="M790 160 L820 160" fill="none" stroke="#C0392B" stroke-width="1.4" marker-end="url(#pa1r)"/>
+<path d="M790 264 L820 264" fill="none" stroke="#C0392B" stroke-width="1.4" marker-end="url(#pa1r)"/>
+<path d="M790 368 L820 368" fill="none" stroke="#C0392B" stroke-width="1.4" marker-end="url(#pa1r)"/>
+
+<path d="M215 56 L250 56" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+<path d="M215 160 L250 160" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+<path d="M215 264 L250 264" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+<path d="M215 368 L250 368" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+<path d="M215 472 L250 472" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+<path d="M215 576 L250 576" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+<path d="M215 660 L250 660" fill="none" stroke="#B8C9DA" stroke-width="1.2"/>
+
+<rect x="55" y="39" width="160" height="34" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="1"/>
+<text x="135" y="56" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#0C447C">① 前端触发</text>
+<rect x="55" y="143" width="160" height="34" rx="8" fill="#EAF3DE" stroke="#97C459" stroke-width="1"/>
+<text x="135" y="160" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#27500A">② 路由层</text>
+<rect x="55" y="247" width="160" height="34" rx="8" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
+<text x="135" y="264" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#3C3489">③ 裁决与校验</text>
+<rect x="55" y="351" width="160" height="34" rx="8" fill="#FAEDA8" stroke="#EF9F27" stroke-width="1"/>
+<text x="135" y="368" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#854F0B">④ 服务层</text>
+<rect x="55" y="455" width="160" height="34" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="1"/>
+<text x="135" y="472" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#993C1D">⑤ 数据写入</text>
+<rect x="55" y="559" width="160" height="34" rx="8" fill="#EAF3DE" stroke="#97C459" stroke-width="1"/>
+<text x="135" y="576" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#27500A">⑥ 提交派发</text>
+<rect x="55" y="643" width="160" height="34" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="1"/>
+<text x="135" y="660" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#0C447C">⑦ 返回结果</text>
+
+<rect x="250" y="20" width="540" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="20" width="5" height="72" rx="2" fill="#378ADD"/>
+<text x="274" y="45" font-size="15" font-weight="600" fill="#0B2545">前端：Agent 工作台提交任务</text>
+<text x="274" y="66" font-size="12.5" fill="#4A6B8A">自然语言意图或模板，带工作区 id 与上下文选择器</text>
+<text x="274" y="84" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">page.tsx → POST /workspaces/{id}/agent/tasks</text>
+
+<rect x="250" y="124" width="540" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="124" width="5" height="72" rx="2" fill="#639922"/>
+<text x="274" y="149" font-size="15" font-weight="600" fill="#0B2545">路由层 create_task()</text>
+<text x="274" y="170" font-size="12.5" fill="#4A6B8A">身份 + workspace + 编辑权限校验，路径租户一致性比对</text>
+<text x="274" y="188" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">routes/agent_platform.py:195</text>
+
+<rect x="250" y="228" width="540" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="228" width="5" height="72" rx="2" fill="#7F77DD"/>
+<text x="274" y="253" font-size="15" font-weight="600" fill="#0B2545">工作流裁决 + 四重校验</text>
+<text x="274" y="274" font-size="12.5" fill="#4A6B8A">_resolve_workflow 定工作流，再校验上下文/会话/并发</text>
+<text x="274" y="292" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">_validate_context_scope / conversation / concurrency</text>
+
+<rect x="250" y="332" width="540" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="332" width="5" height="72" rx="2" fill="#BA7517"/>
+<text x="274" y="357" font-size="15" font-weight="600" fill="#0B2545">服务层 create_agent_task()</text>
+<text x="274" y="378" font-size="12.5" fill="#4A6B8A">解析工作流 → 脱敏 → 校验 → 建 Task / Run / Event / Outbox</text>
+<text x="274" y="396" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">services/agent_tasks.py:53</text>
+
+<rect x="250" y="436" width="540" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="436" width="5" height="72" rx="2" fill="#D85A30"/>
+<text x="274" y="461" font-size="15" font-weight="600" fill="#0B2545">同一事务写入四张表（无条件）</text>
+<text x="274" y="482" font-size="12.5" fill="#4A6B8A">AgentTask / AgentRun / AgentRunEvent / OutboxEvent</text>
+<text x="274" y="500" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">Task 必建 · Run.task_id 必填 · thread_id = uuid4()</text>
+
+<rect x="250" y="540" width="540" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="540" width="5" height="72" rx="2" fill="#639922"/>
+<text x="274" y="565" font-size="15" font-weight="600" fill="#0B2545">db.commit() → kick_outbox_dispatcher()</text>
+<text x="274" y="586" font-size="12.5" fill="#4A6B8A">一次提交四表，再触发异步扫描；刷新 Task 返回</text>
+<text x="274" y="604" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">routes/agent_platform.py:216 / 225</text>
+
+<rect x="250" y="644" width="540" height="52" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="644" width="5" height="52" rx="2" fill="#378ADD"/>
+<text x="274" y="666" font-size="15" font-weight="600" fill="#0B2545">返回 202 + AgentTaskRead</text>
+<text x="274" y="685" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">status = queued，返回任务快照而非执行结果</text>
+
+<rect x="820" y="141" width="250" height="38" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="1"/>
+<text x="945" y="160" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#993C1D">租户不一致 / 无权 → 403</text>
+<rect x="820" y="245" width="250" height="38" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="1"/>
+<text x="945" y="264" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#993C1D">并发超限 / 缺少上下文 → 409</text>
+<rect x="820" y="349" width="250" height="38" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="1"/>
+<text x="945" y="368" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#993C1D">工作流无效/禁用 → 422</text>
+</svg>
+<figcaption>图：平台任务同步创建主流程与三个拒绝分支</figcaption>
+</figure>
+
+<div class="keypoints">
+  <div class="kp"><div class="fn">create_task()<br>routes/agent_platform.py:195</div><div class="ds">薄路由层。<code>WorkspaceEditDep</code> 完成身份与编辑权限校验（角色须 OWNER/OPERATOR），<code>_require_path_workspace()</code> 比对路径 <code>workspace_id</code> 与鉴权工作区，不一致抛 403。随后编排：调 <code>create_agent_task()</code> → <code>db.commit()</code> → <code>kick_outbox_dispatcher()</code>，刷新并返回 <code>AgentTask</code>。冲突转 409，状态错误转 422。</div></div>
+  <div class="kp"><div class="fn">create_agent_task()<br>services/agent_tasks.py:53</div><div class="ds">真正干活的地方，十步顺序执行：<code>_resolve_workflow()</code> 裁决工作流 → <code>redact_snapshot()</code> 脱敏上下文 → 校验上下文作用域 → 校验会话归属 → 校验工作区并发 → 建 AgentTask → 建 AgentRun（<code>task_id=task.id</code> 必填）→ 建 AgentRunEvent → 写 OutboxEvent，全部 <code>db.flush()</code> 但不提交。</div></div>
+  <div class="kp"><div class="fn">_resolve_workflow()<br>services/agent_tasks.py:308</div><div class="ds">工作流裁决器。请求带 <code>workflow_key</code> 就 <code>get_workflow()</code> 精确取（无效抛 422）；只带 <code>intent</code> 就走 <code>route_intent()</code> 关键词匹配。最后还要过 <code>is_workflow_enabled()</code> 租户准入校验——两级开关任一显式为 false 就拒绝。</div></div>
+</div>
+
+<h3 id="sec-2">工作流是怎么裁决出来的</h3>
+
+<p>注册表 <code>registry.py</code> 里有 7 条工作流，每条声明了 Agent 序列、必需上下文和风险级别。意图路由 <code>route_intent()</code> 用 6 组关键词做匹配，<strong>没命中就兜底到 <code>product_diagnosis_optimization</code></strong>——这正是「默认任务会转调基础图」的根源。</p>
+
+<table>
+<thead><tr><th style="width:34%">工作流 key</th><th style="width:14%">风险</th><th>参与 Agent / 必需上下文</th></tr></thead>
+<tbody>
+<tr><td><code>product_diagnosis_optimization</code>　<span style="color:#993C1D">兜底</span></td><td>R2</td><td>商品策略 → 创意策略 → 质量合规；需 product_id</td></tr>
+<tr><td><code>creative_content_production</code></td><td>R1</td><td>创意策略 → 内容生产 → 质量合规；需 product_id</td></tr>
+<tr><td><code>competitor_continuous_monitoring</code></td><td>R1</td><td>市场情报 → 质量合规；需 product_id、store_id</td></tr>
+<tr><td><code>growth_ad_experiment_loop</code></td><td>R2</td><td>增长实验 → 经营复盘 → 质量合规；需 product_id</td></tr>
+<tr><td><code>periodic_performance_review</code></td><td>R1</td><td>经营复盘 → 质量合规；需 product_id、store_id</td></tr>
+<tr><td><code>inventory_operations</code></td><td>R1</td><td>库存运营 → 质量合规；需 product_id、store_id</td></tr>
+<tr><td><code>store_portfolio_inspection</code></td><td>R1</td><td>市场情报 → 商品策略 → 经营复盘 → 库存运营 → 质量合规；需 store_id</td></tr>
+</tbody>
+</table>
+
+<h2 id="sec-3">二、异步投递阶段：Outbox 可靠投递</h2>
+
+<p>四表提交后进入异步段。这条入口<strong>只有一条投递路径</strong>——因为 Task 必建、Outbox 必写，不存在商品工作台那种「task_id 为空走直投」的旧分支。Beat 定时扫描是兜底。</p>
+
+<figure>
+<svg viewBox="0 0 1120 510" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>平台任务异步投递链路流程图</title>
+<desc>从写入 Outbox 事件开始，经 kick_outbox_dispatcher、Beat 每五秒扫描、publish_event 投递，到 agent.workflow 队列的链路，标注幂等键、退避与重试策略。</desc>
+<defs>
+<marker id="pa2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#7A94AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<path d="M560 84 L560 108" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa2)"/>
+<path d="M560 176 L560 204" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa2)"/>
+<path d="M560 272 L560 300" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa2)"/>
+<path d="M560 368 L560 396" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa2)"/>
+
+<rect x="250" y="20" width="620" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="20" width="5" height="64" rx="2" fill="#BA7517"/>
+<text x="274" y="44" font-size="15" font-weight="600" fill="#0B2545">① 写 OutboxEvent（与四表同事务已提交）</text>
+<text x="274" y="65" font-size="12" fill="#4A6B8A">event_type = workflow.run.requested · 幂等键 agent-run:{run_id}:start</text>
+<text x="274" y="79" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">_enqueue_run_event() · services/agent_tasks.py:448</text>
+
+<rect x="250" y="108" width="620" height="68" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="108" width="5" height="68" rx="2" fill="#639922"/>
+<text x="274" y="133" font-size="14.5" font-weight="600" fill="#0B2545">② kick_outbox_dispatcher() 立即催扫一次</text>
+<text x="274" y="153" font-size="12.5" fill="#4A6B8A">往 maintenance 队列投 dispatch_outbox_events；Redis 瞬断时吞异常</text>
+<text x="274" y="170" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">services/outbox.py:49 · 事件已落库，丢不了</text>
+
+<rect x="250" y="204" width="620" height="68" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="204" width="5" height="68" rx="2" fill="#639922"/>
+<text x="274" y="229" font-size="14.5" font-weight="600" fill="#0B2545">③ Beat 每 5 秒扫描 dispatch_pending_outbox_events()</text>
+<text x="274" y="249" font-size="12.5" fill="#4A6B8A">FOR UPDATE SKIP LOCKED 取 pending 且到期事件（limit 50）</text>
+<text x="274" y="266" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">celery_app.py:34 · 失败 attempts+1，退避 min(2^attempts,300) 秒</text>
+
+<rect x="250" y="300" width="620" height="68" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="300" width="5" height="68" rx="2" fill="#639922"/>
+<text x="274" y="325" font-size="14.5" font-weight="600" fill="#0B2545">④ _publish_event() 投递工作流任务</text>
+<text x="274" y="345" font-size="12.5" fill="#4A6B8A">只认 workflow.run.requested → run_registered_agent_workflow_task.apply_async</text>
+<text x="274" y="362" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">services/outbox.py:55 · 成功置 published，累计 10 次置 failed</text>
+
+<rect x="250" y="396" width="620" height="94" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="396" width="5" height="94" rx="2" fill="#378ADD"/>
+<text x="274" y="421" font-size="14.5" font-weight="600" fill="#0B2545">⑤ 投递到 agent.workflow 队列</text>
+<text x="274" y="443" font-size="12.5" fill="#4A6B8A">Celery 任务 agent.run_registered_workflow（max_retries=2）</text>
+<text x="274" y="462" font-size="12.5" fill="#4A6B8A">任务级重试退避 2^(retries+1) 秒；幂等由 DB 状态 + 租约吸收</text>
+<text x="274" y="480" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">worker/tasks.py:38 · core/config.py 默认队列 agent.workflow</text>
+</svg>
+<figcaption>图：平台任务 Outbox 可靠投递链路</figcaption>
+</figure>
+
+<div class="keypoints">
+  <div class="kp"><div class="fn">_enqueue_run_event()<br>services/agent_tasks.py:448</div><div class="ds">写 <code>OutboxEvent</code>：<code>event_type="workflow.run.requested"</code>、<code>aggregate_type="agent_run"</code>、<code>aggregate_id=str(run.id)</code>、payload 带 <code>run_id</code> 与 <code>resume_payload</code>。幂等键 <code>agent-run:{run_id}:start</code>，初始 <code>status="pending"</code>、<code>attempts=0</code>。</div></div>
+  <div class="kp"><div class="fn">dispatch_pending_outbox_events()<br>_publish_event() · services/outbox.py</div><div class="ds"><code>kick_outbox_dispatcher()</code> 只是催扫，真正兜底是 Beat 每 5 秒。扫描器用 <code>FOR UPDATE SKIP LOCKED</code> 取到期事件，<code>_publish_event()</code> 只认一种事件类型，投 <code>agent.run_registered_workflow_task</code> 到 <code>agent.workflow</code> 队列。投递失败按指数退避，累计十次放弃。</div></div>
+</div>
+
+<h2 id="sec-4">三、Worker 分流：默认走基础图，其余才走平台图</h2>
+
+<p>这是整条链最关键的分叉。Worker 拿到任务后，<code>run_registered_agent_workflow()</code> 先查 <code>workflow_key</code>：<strong>等于 <code>product_diagnosis_optimization</code> 就转调基础图并直接返回</strong>；只有其余工作流才认领运行、构建平台图。由于意图路由的兜底值正是前者，所以「一句自然语言、没点模板」创建的任务默认走基础图。</p>
+
+<figure>
+<svg viewBox="0 0 1120 470" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Worker 工作流分流图</title>
+<desc>Worker 领取任务后读 workflow_key，命中 product_diagnosis_optimization 转调基础图，其余工作流走 _claim_run 认领并构建平台图，两条路径最终都进入状态同步。</desc>
+<defs>
+<marker id="pa3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#7A94AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<path d="M560 84 L560 108" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa3)"/>
+<path d="M560 176 L560 204" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa3)"/>
+<path d="M400 272 L400 300 L300 300 L300 328" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa3)"/>
+<path d="M720 272 L720 300 L820 300 L820 328" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa3)"/>
+<path d="M300 404 L300 432 L560 432 L560 448" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa3)"/>
+<path d="M820 404 L820 432 L560 432" fill="none" stroke="#7A94AD" stroke-width="1.5"/>
+
+<rect x="310" y="20" width="500" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="310" y="20" width="5" height="64" rx="2" fill="#378ADD"/>
+<text x="334" y="44" font-size="15" font-weight="600" fill="#0B2545">Worker 领取 agent.run_registered_workflow_task</text>
+<text x="334" y="66" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">来自 agent.workflow 队列 · services/agent_workflows.py:67</text>
+
+<rect x="310" y="108" width="500" height="68" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="310" y="108" width="5" height="68" rx="2" fill="#7F77DD"/>
+<text x="334" y="133" font-size="15" font-weight="600" fill="#0B2545">run_registered_agent_workflow() 读 workflow_key</text>
+<text x="334" y="154" font-size="12.5" fill="#4A6B8A">查 AgentRun.workflow_key，按值二分；lease_owner = celery:{task_id}</text>
+<text x="334" y="170" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">services/agent_workflows.py:77</text>
+
+<rect x="60" y="328" width="480" height="76" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="60" y="328" width="5" height="76" rx="2" fill="#639922"/>
+<text x="84" y="353" font-size="14.5" font-weight="600" fill="#0B2545">workflow_key = product_diagnosis_optimization</text>
+<text x="84" y="374" font-size="12.5" fill="#4A6B8A">转调 run_agent_workflow() → build_product_operation_graph()</text>
+<text x="84" y="393" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">直接 return · 走基础图，不构建平台图（:78-81）</text>
+
+<rect x="580" y="328" width="480" height="76" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="580" y="328" width="5" height="76" rx="2" fill="#BA7517"/>
+<text x="604" y="353" font-size="14.5" font-weight="600" fill="#0B2545">其余六条工作流</text>
+<text x="604" y="374" font-size="12.5" fill="#4A6B8A">_claim_run() 认领 → 组装 deps → build_platform_workflow_graph()</text>
+<text x="604" y="393" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">平台图分支 · 详见平台图构图章节</text>
+
+<rect x="310" y="448" width="500" height="0" rx="0" fill="#FFFFFF" stroke="none"/>
+<text x="560" y="452" text-anchor="middle" font-size="11.5" fill="#5A7A99">两条路径执行后都调用状态同步：基础图 _sync_agent_run_state / 平台图 _sync_generic_state</text>
+</svg>
+<figcaption>图：Worker 按 workflow_key 二分，默认转基础图</figcaption>
+</figure>
+
+<div class="keypoints">
+  <div class="kp"><div class="fn">run_registered_agent_workflow()<br>services/agent_workflows.py:67</div><div class="ds">读 <code>workflow_key</code> 后二分。命中 <code>product_diagnosis_optimization</code> 就 <code>run_agent_workflow()</code> 并 <code>return</code>（:78-81）；其余先 <code>_claim_run()</code> 认领，组装五个依赖函数（load_context / run_specialist / evaluate_quality / finalize / record_event），在检查点与心跳上下文中 <code>graph.invoke()</code>，最后 <code>_sync_generic_state()</code>。</div></div>
+  <div class="kp"><div class="fn">_claim_run()<br>services/agent_workflows.py:207</div><div class="ds">平台图分支的认领：首次只接受 QUEUED，恢复只接受 RESUME_QUEUED；<code>run.task_id is None</code> 直接抛错（平台图强制要求任务存在）。置 Run 与 Task 为 RUNNING、写 5 分钟租约，记 <code>workflow_started</code> / <code>workflow_resumed</code> 事件。</div></div>
+</div>
+
+<h2 id="sec-5">四、平台图执行：动态装配与审批门</h2>
+
+<p>走到平台图的任务，由 <code>build_platform_workflow_graph()</code> 动态装配。<strong>它不是写死的节点链</strong>——固定节点只有加载上下文、质量合规、审批门、finalize、质量失败五个，中间的领域 Agent 按工作流的 <code>agents</code> 声明动态插入。图用 <code>thread_id</code> 挂 Postgres 检查点，靠 <code>interrupt()</code> 实现人工审批。</p>
+
+<figure>
+<svg viewBox="0 0 1120 690" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>平台图节点装配与执行流程图</title>
+<desc>平台图从加载上下文开始，依次经过动态插入的领域 Agent、质量合规门，按风险级别决定是否进入审批门 interrupt，再经 finalize 落库或 quality_failed 终态，编辑后再质检的回路单独标注。</desc>
+<defs>
+<marker id="pa4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#7A94AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="pa4r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="pa4a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<path d="M560 84 L560 98" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa4)"/>
+<path d="M560 164 L560 178" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa4)"/>
+<path d="M560 244 L560 258" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa4)"/>
+<path d="M560 324 L560 358" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa4)"/>
+<text x="578" y="346" font-size="11.5" fill="#3B6D11">passed</text>
+<path d="M800 292 L856 292" fill="none" stroke="#C0392B" stroke-width="1.5" marker-end="url(#pa4r)"/>
+<text x="828" y="284" text-anchor="middle" font-size="11.5" fill="#993C1D">failed</text>
+<path d="M560 436 L560 498" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa4)"/>
+<path d="M800 398 L840 398 L840 566 L804 566" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#pa4a)"/>
+<text x="848" y="482" font-size="11.5" fill="#854F0B">edited_output</text>
+<text x="848" y="500" font-size="11.5" fill="#854F0B">触发二次质检</text>
+
+<rect x="320" y="20" width="480" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="320" y="20" width="5" height="64" rx="2" fill="#378ADD"/>
+<text x="344" y="44" font-size="15" font-weight="600" fill="#0B2545">build_platform_workflow_graph() 动态装配</text>
+<text x="344" y="66" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">agents/platform_graph.py:32 · thread_id + recursion_limit=32</text>
+
+<rect x="320" y="100" width="480" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="320" y="100" width="5" height="64" rx="2" fill="#639922"/>
+<text x="344" y="124" font-size="14.5" font-weight="600" fill="#0B2545">① load_context：加载任务上下文</text>
+<text x="344" y="146" font-size="12.5" fill="#4A6B8A">_load_task_context(task_id) 装配 workspace/product/store/memory</text>
+
+<rect x="320" y="180" width="480" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="320" y="180" width="5" height="64" rx="2" fill="#7F77DD"/>
+<text x="344" y="204" font-size="14.5" font-weight="600" fill="#0B2545">② specialist × N：领域 Agent 依次执行</text>
+<text x="344" y="226" font-size="12.5" fill="#4A6B8A">按 workflow.agents 顺序动态插入，跳过质量合规 Agent</text>
+
+<rect x="320" y="260" width="480" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="320" y="260" width="5" height="64" rx="2" fill="#7F77DD"/>
+<text x="344" y="284" font-size="14.5" font-weight="600" fill="#0B2545">③ quality_compliance：质量合规门</text>
+<text x="344" y="306" font-size="12.5" fill="#4A6B8A">规则检查非空/禁语/业务上下文，route_after_quality 二分</text>
+
+<rect x="860" y="260" width="220" height="64" rx="10" fill="#FCEBEB" stroke="#F09595" stroke-width="1"/>
+<rect x="860" y="260" width="5" height="64" rx="2" fill="#A32D2D"/>
+<text x="884" y="284" font-size="14" font-weight="600" fill="#791F1F">quality_failed</text>
+<text x="884" y="306" font-size="11.5" fill="#A32D2D">终态 · 不落业务成果</text>
+
+<rect x="320" y="360" width="480" height="76" rx="10" fill="#FAECE7" stroke="#F0997B" stroke-width="1"/>
+<rect x="320" y="360" width="5" height="76" rx="2" fill="#D85A30"/>
+<text x="344" y="384" font-size="14.5" font-weight="600" fill="#993C1D">④ approval_gate：interrupt() 挂起（仅 R2/R3）</text>
+<text x="344" y="405" font-size="12.5" fill="#712B13">草稿与质检报告写入检查点，同 thread_id 恢复</text>
+<text x="344" y="425" font-size="12" fill="#712B13">R1 跳过此门，passed 直连 finalize</text>
+
+<rect x="320" y="500" width="480" height="150" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="320" y="500" width="5" height="150" rx="2" fill="#639922"/>
+<text x="344" y="524" font-size="14.5" font-weight="600" fill="#0B2545">⑤ finalize：落库收尾</text>
+<text x="344" y="547" font-size="12.5" fill="#4A6B8A">取 approval.edited_output，若有则二次 evaluate_quality</text>
+<text x="344" y="569" font-size="12.5" fill="#4A6B8A">不通过 → quality_failed；通过 → deps.finalize</text>
+<text x="344" y="591" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">_finalize_generic_run · key = platform-finalize-v1</text>
+<text x="344" y="615" font-size="12.5" fill="#4A6B8A">落 run.final_output，Run/Task → COMPLETED</text>
+<text x="344" y="637" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">产物：CreativePlan / AdRecommendation / ReviewReport</text>
+</svg>
+<figcaption>图：平台图动态装配、质量门、审批门与 finalize</figcaption>
+</figure>
+
+<div class="keypoints">
+  <div class="kp"><div class="fn">build_platform_workflow_graph()<br>agents/platform_graph.py:32</div><div class="ds">先注册五个固定节点并连 <code>START→load_context</code>，再遍历 <code>workflow.agents</code> 跳过质量合规 Agent，把其余依次链成 <code>load_context→agent1→agent2→quality_compliance</code>。最后按风险装配：<code>R2/R3</code> 时质量门 passed 走审批门、failed 走质量失败；<code>R1</code> 时 passed 直接 finalize。两条路径都经 <code>finalize→END</code> 或 <code>quality_failed→END</code>。</div></div>
+  <div class="kp"><div class="fn">approval_node()<br>agents/platform_graph.py:76</div><div class="ds"><code>interrupt()</code> 把 <code>action_key="workflow.accept_result"</code>、风险级别、工作流 key、草稿、质检报告写进检查点，同 <code>thread_id</code> 恢复。平台图节点<strong>不经 <code>_run_observed()</code>、没有 OpenTelemetry span</strong>，而是各节点直接 <code>deps.record_event()</code> 写事件并续租。</div></div>
+  <div class="kp"><div class="fn">finalize_node()<br>agents/platform_graph.py:90</div><div class="ds">若审批决定带 <code>edited_output</code>，先替换产出并<strong>再次 <code>evaluate_quality()</code></strong>，记 <code>edited_output_quality_review_completed</code> 事件；不通过返回 <code>quality_failed</code>，通过才 <code>deps.finalize()</code>。这是平台图区别于基础图的关键——编辑后要重新过质量门。</div></div>
+  <div class="kp"><div class="fn">_finalize_generic_run()<br>services/agent_workflows.py:644</div><div class="ds">fenced finalize：用 <code>platform-finalize-v1</code> 幂等键写 <code>run.final_output</code>，置 Run 与 Task 为 COMPLETED，写 <code>AgentRunOperation</code>。产物由 <code>_persist_generic_artifacts()</code> 落成 CreativePlan / AdRecommendation / ReviewReport 等正式对象。</div></div>
+</div>
+
+<h2 id="sec-6">五、审批与恢复：人工决定怎么回到工作流</h2>
+
+<p>审批门 <code>interrupt()</code> 挂起后，Run 进入 <code>AWAITING_REVIEW</code>、Task 进入 <code>AWAITING_APPROVAL</code>，并建一张 <code>AgentApproval</code>。人工在审批页做决定后，通过<strong>平台图专用接口</strong>写回，Outbox 二次投递把决定送回 Worker，同一个 <code>thread_id</code> 恢复执行。</p>
+
+<figure>
+<svg viewBox="0 0 1120 540" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>平台图审批与恢复时序流程图</title>
+<desc>从 interrupt 挂起、状态同步建审批单，到人工决定接口、通过或拒绝两条分支，再到二次 Outbox 投递、同 thread_id 恢复 finalize 的完整时序。</desc>
+<defs>
+<marker id="pa5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#7A94AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="pa5r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<path d="M560 84 L560 112" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa5)"/>
+<path d="M560 180 L560 208" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa5)"/>
+<path d="M560 276 L560 304" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa5)"/>
+<path d="M400 372 L400 396 L280 396 L280 420" fill="none" stroke="#C0392B" stroke-width="1.5" marker-end="url(#pa5r)"/>
+<path d="M720 372 L720 396 L840 396 L840 420" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa5)"/>
+<path d="M840 492 L840 512 L560 512 L560 518" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#pa5)"/>
+
+<rect x="250" y="20" width="620" height="64" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="20" width="5" height="64" rx="2" fill="#D85A30"/>
+<text x="274" y="44" font-size="14.5" font-weight="600" fill="#0B2545">interrupt() 挂起 → _sync_generic_state(interrupted=True)</text>
+<text x="274" y="65" font-size="12.5" fill="#4A6B8A">Run=AWAITING_REVIEW · Task=AWAITING_APPROVAL · 清租约</text>
+<text x="274" y="79" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">services/agent_workflows.py:755</text>
+
+<rect x="250" y="112" width="620" height="68" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="112" width="5" height="68" rx="2" fill="#BA7517"/>
+<text x="274" y="137" font-size="14.5" font-weight="600" fill="#0B2545">建 AgentApproval（action_key = workflow.accept_result）</text>
+<text x="274" y="157" font-size="12.5" fill="#4A6B8A">request_payload 从图 state 实时派生：draft_output + quality_report 脱敏</text>
+<text x="274" y="173" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">status=PENDING · expires_at = now + 24h · 记 approval_requested</text>
+
+<rect x="250" y="208" width="620" height="68" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="250" y="208" width="5" height="68" rx="2" fill="#378ADD"/>
+<text x="274" y="233" font-size="14.5" font-weight="600" fill="#0B2545">人工决定：POST /agent/approvals/{id}/decision</text>
+<text x="274" y="253" font-size="12.5" fill="#4A6B8A">decide_approval() → decide_agent_approval()，R3 须 OWNER，过期置 EXPIRED</text>
+<text x="274" y="269" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">routes/agent_platform.py:324 · services/agent_tasks.py:169</text>
+
+<rect x="60" y="420" width="440" height="72" rx="10" fill="#FCEBEB" stroke="#F09595" stroke-width="1"/>
+<rect x="60" y="420" width="5" height="72" rx="2" fill="#A32D2D"/>
+<text x="84" y="445" font-size="14.5" font-weight="600" fill="#791F1F">reject：驳回</text>
+<text x="84" y="466" font-size="12.5" fill="#A32D2D">Task=CANCELLED · Run=REJECTED · 记 approval_rejected</text>
+<text x="84" y="483" font-size="11.5" fill="#993C1D" font-family="Consolas,monospace">不写 Outbox，流程终止</text>
+
+<rect x="620" y="420" width="440" height="72" rx="10" fill="#FFFFFF" stroke="#D5E0EC" stroke-width="1"/>
+<rect x="620" y="420" width="5" height="72" rx="2" fill="#639922"/>
+<text x="644" y="445" font-size="14.5" font-weight="600" fill="#0B2545">approve：通过（含编辑后通过）</text>
+<text x="644" y="466" font-size="12.5" fill="#4A6B8A">Task=QUEUED · Run=RESUME_QUEUED · 记 approval_accepted</text>
+<text x="644" y="483" font-size="11.5" fill="#185FA5" font-family="Consolas,monospace">edited_output 存在 → resume_decision = edit_and_approve</text>
+
+<rect x="250" y="518" width="620" height="0" rx="0" fill="#FFFFFF" stroke="none"/>
+<text x="560" y="524" text-anchor="middle" font-size="12" fill="#233C5A">二次 Outbox（幂等键 agent-run:{run_id}:approval-{approval_id}）→ 同 thread_id 恢复 → finalize → COMPLETED</text>
+</svg>
+<figcaption>图：审批挂起、人工决定与恢复链路</figcaption>
+</figure>
+
+<div class="keypoints">
+  <div class="kp"><div class="fn">_sync_generic_state()<br>services/agent_workflows.py:755</div><div class="ds">把 <code>interrupted=True</code> 翻译成 Run 的 <code>AWAITING_REVIEW</code> 与 Task 的 <code>AWAITING_APPROVAL</code>，清租约、建 <code>AgentApproval</code>。审批单的 <code>request_payload</code> 从图 state 的 <code>values</code> 实时派生——<code>draft_output</code> 和 <code>quality_report</code> 都经 <code>redact_snapshot()</code> 脱敏，不读数据库旧字段。</div></div>
+  <div class="kp"><div class="fn">decide_agent_approval()<br>services/agent_tasks.py:169</div><div class="ds">先校验审批单状态、R3 权限、归属与时效。拒绝：Task=CANCELLED、Run=REJECTED，不写 Outbox。通过：Task=QUEUED、Run=<code>RESUME_QUEUED</code>，写 <code>approval_accepted</code> 事件，若带 <code>edited_output</code> 则决定记为 <code>edit_and_approve</code>，最后写二次 Outbox（幂等键结尾 <code>approval-{approval_id}</code>）。</div></div>
+  <div class="kp"><div class="fn">恢复执行<br>agent_workflows.py:120-131</div><div class="ds">Outbox 再投递后，Worker 带 <code>resume_payload</code> 重入 <code>run_registered_agent_workflow()</code>，<code>_claim_run()</code> 接受 RESUME_QUEUED，<code>graph.invoke(Command(resume=resume_payload))</code> 从 <code>interrupt()</code> 处续跑，进 <code>finalize_node()</code>（编辑后先二次质检）落终态。</div></div>
+</div>
+
+<h2 id="sec-7">六、平台图与基础图差异对照</h2>
+
+<p>两张图共用同一套 Harness 约束，但在装配方式、审批门设置、返修能力和可观测实现上有明显差别。逐项对照如下：</p>
+
+<table>
+<thead><tr><th style="width:20%">维度</th><th style="width:40%">平台图 platform_graph.py</th><th style="width:40%">基础图 graph.py</th></tr></thead>
+<tbody>
+<tr><td>触发条件</td><td>显式指定非默认工作流 key（其余六条）</td><td><code>product_diagnosis_optimization</code>，含自然语言兜底与平台任务默认</td></tr>
+<tr><td>装配方式</td><td>固定五节点 + 按 <code>workflow.agents</code> 动态插入领域 Agent</td><td>写死七个节点</td></tr>
+<tr><td>节点序列</td><td>load_context → specialist × N → quality_compliance →（R2/R3）approval_gate → finalize</td><td>商品上下文 → 诊断 → 创意策略 → 质量审查 → 人审门 → finalize</td></tr>
+<tr><td>审批门</td><td>仅 R2/R3 才有，R1 直接 passed → finalize</td><td>恒有人审门</td></tr>
+<tr><td>返修回路</td><td><strong>没有</strong>，质量失败直接进 quality_failed 终态</td><td><strong>有</strong>，不过且未超上限回诊断重做</td></tr>
+<tr><td>编辑后质检</td><td>finalize 中检测 edited_output，<strong>重新</strong> evaluate_quality</td><td>人审接受 edit_and_approve，finalize 不再质检</td></tr>
+<tr><td>可观测实现</td><td>各节点直接 <code>deps.record_event()</code>，无 span</td><td>每节点经 <code>_run_observed()</code> 包 span，记 trace_id/span_id/耗时</td></tr>
+<tr><td>状态同步</td><td><code>_sync_generic_state()</code></td><td><code>_sync_agent_run_state()</code></td></tr>
+<tr><td>审批恢复入口</td><td><code>POST /agent/approvals/{id}/decision</code></td><td><code>POST /agent-runs/{run_id}/review</code></td></tr>
+<tr><td>落库幂等键</td><td><code>platform-finalize-v1</code></td><td><code>finalize-v1</code></td></tr>
+</tbody>
+</table>
+
+<h2 id="sec-8">七、五个容易搞错的点</h2>
+
+<div class="warn">
+<ol>
+<li><strong>路由文件与入口函数别记混。</strong>平台任务在 <code>routes/agent_platform.py</code> 的 <code>create_task()</code>，不在 <code>routes/agent_tasks.py</code>；后者是服务层所在。返回码是 202，不是 201。</li>
+<li><strong>默认任务根本不走平台图。</strong>意图路由没命中就兜底 <code>product_diagnosis_optimization</code>，Worker 命中这个 key 直接转基础图；要真正跑平台图，前端得用模板表单显式提交其它 <code>workflow_key</code>（或意图命中对应关键词）。</li>
+<li><strong>平台任务一定有 AgentTask。</strong>与商品工作台的 task 可空不同，这里 <code>AgentRun.task_id</code> 必填，<code>_claim_run()</code> 还会强制校验 task_id 非空；同事务写四张表无条件成立。</li>
+<li><strong>审批恢复入口不是 <code>/agent-runs/{run_id}/review</code>。</strong>那是基础图的入口；平台图走 <code>/agent/approvals/{approval_id}/decision</code>，且二次 Outbox 幂等键结尾是 <code>approval-{approval_id}</code>（基础图是 <code>legacy-review</code>）。</li>
+<li><strong>幂等键分段要分清。</strong>创建 <code>agent-run:{run_id}:start</code>、审批恢复 <code>agent-run:{run_id}:approval-{id}</code>、落库 <code>platform-finalize-v1</code> 或 <code>finalize-v1</code>。三者分别管投递、恢复、落库，不在同一层。</li>
+</ol>
+</div>
+
+<footer>
+<span class="tag">链路结论</span>同步创建 → 异步投递 → Worker 按 workflow_key 分流（默认基础图，其余平台图）。
+</footer>
+
+</div>
+
+<aside class="side-toc" aria-label="章节导航">
+  <nav class="toc-list">
+    <a class="lv2" href="#sec-1">一、同步创建阶段：从提交任务到 202 返回</a>
+    <a class="lv2" href="#sec-3">二、异步投递阶段：Outbox 可靠投递</a>
+    <a class="lv2" href="#sec-4">三、Worker 分流：默认走基础图，其余才走平台图</a>
+    <a class="lv2" href="#sec-5">四、平台图执行：动态装配与审批门</a>
+    <a class="lv2" href="#sec-6">五、审批与恢复：人工决定怎么回到工作流</a>
+    <a class="lv2" href="#sec-7">六、平台图与基础图差异对照</a>
+    <a class="lv2" href="#sec-8">七、五个容易搞错的点</a>
+  </nav>
+</aside>
+
+
+<script>
+(function(){
+  var box=document.querySelector('.side-toc');
+  if(!box) return;
+  var links=[].slice.call(box.querySelectorAll('.toc-list a'));
+  var secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function sync(){
+    var y=window.scrollY+130, idx=0;
+    for(var i=0;i<secs.length;i++){ if(secs[i] && secs[i].offsetTop<=y) idx=i; }
+    links.forEach(function(a,i){ a.classList.toggle('active', i===idx); });
+  }
+  window.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync);
+  sync();
+  // 目录项等高：取本页最高项高度统一
+  function equalize(){
+    links.forEach(function(a){ a.style.height=''; });
+    var max=0;
+    links.forEach(function(a){ if(a.offsetHeight>max) max=a.offsetHeight; });
+    links.forEach(function(a){ a.style.height=max+'px'; });
+  }
+  equalize();
+  window.addEventListener('resize',function(){ equalize(); sync(); });
+})();
+</script>
+</body>
+</html>

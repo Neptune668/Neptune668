@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 440" width="680" height="440">
+  <rect x="0" y="0" width="680" height="440" fill="#FFFFFF"/>
+
+  <text x="340" y="26" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#5A7A99">追加到 schemas.py 末尾的十七个模型，按职责分成五组</text>
+
+  <rect x="40" y="40" width="150" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="115" y="72" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">运行时视图</text>
+  <rect x="205" y="40" width="435" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="217" y="48" width="411" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="229" y="68" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">AgentRunRead · AgentRunEventRead · AgentRunReviewRead</text>
+  <text x="229" y="84" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">AgentRunDraftRead · AgentRunReviewCreate（唯一请求，承接恢复内容）</text>
+
+  <rect x="40" y="120" width="150" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="115" y="152" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">目录</text>
+  <rect x="205" y="120" width="435" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="217" y="128" width="411" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="229" y="148" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">AgentDefinitionRead · AgentCatalogRead</text>
+  <text x="229" y="164" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">全部为响应，由目录读取接口返回给前端展示</text>
+
+  <rect x="40" y="200" width="150" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="115" y="232" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">会话</text>
+  <rect x="205" y="200" width="435" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="217" y="208" width="411" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="229" y="228" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">AgentConversationCreate · AgentConversationRead</text>
+  <text x="229" y="244" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">两条 Message 模型，请求与响应成对出现</text>
+
+  <rect x="40" y="280" width="150" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="115" y="312" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">任务与审批</text>
+  <rect x="205" y="280" width="435" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="217" y="288" width="411" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="229" y="308" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">AgentTaskCreate · AgentTaskRead</text>
+  <text x="229" y="324" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">AgentApprovalDecisionCreate · AgentApprovalRead（决定取值只有通过与拒绝）</text>
+
+  <rect x="40" y="360" width="150" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="115" y="392" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">记忆</text>
+  <rect x="205" y="360" width="435" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="217" y="368" width="411" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="229" y="388" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#1F2937">AgentMemoryCreate · AgentMemoryRead</text>
+  <text x="229" y="404" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">带作用域、来源与生效区间三类校验</text>
+</svg>

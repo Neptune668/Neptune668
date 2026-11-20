@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 540" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect x="0" y="0" width="780" height="540" fill="#ffffff"/>
+  <text x="24" y="34" font-size="18" font-weight="700" fill="#1f2d3d">电商核心业务聚合关系</text>
+  <text x="24" y="54" font-size="12" fill="#2b6cb0">Product 是单品运营闭环的聚合根，其余业务实体通过 product_id 外键归属到商品</text>
+
+  <!-- Workspace 顶部 -->
+  <rect x="310" y="44" width="160" height="38" rx="8" fill="#EEEDFE" stroke="#b3abec"/>
+  <text x="390" y="68" font-size="13" font-weight="700" fill="#1f2d3d" text-anchor="middle">Workspace 租户边界</text>
+
+  <!-- 左列业务块 -->
+  <rect x="30" y="110" width="220" height="86" rx="8" fill="#E6F1FB" stroke="#9cc2e6"/>
+  <text x="44" y="132" font-size="12" font-weight="700" fill="#1f2d3d">店铺与商品事实</text>
+  <text x="44" y="152" font-size="11" fill="#334155">Store · ProductSku</text>
+  <text x="44" y="170" font-size="11" fill="#334155">PlatformProductMapping</text>
+  <text x="44" y="188" font-size="11" fill="#2b6cb0">store_id → Product</text>
+
+  <rect x="30" y="214" width="220" height="70" rx="8" fill="#EAF3DE" stroke="#a9cf8a"/>
+  <text x="44" y="236" font-size="12" font-weight="700" fill="#1f2d3d">库存运营</text>
+  <text x="44" y="256" font-size="11" fill="#334155">InventoryItem</text>
+  <text x="44" y="274" font-size="11" fill="#334155">InventoryMovement</text>
+
+  <rect x="30" y="304" width="220" height="86" rx="8" fill="#FAEDA8" stroke="#e3cf6a"/>
+  <text x="44" y="326" font-size="12" font-weight="700" fill="#1f2d3d">竞品监控</text>
+  <text x="44" y="346" font-size="11" fill="#334155">Competitor</text>
+  <text x="44" y="364" font-size="11" fill="#334155">CompetitorMonitor</text>
+  <text x="44" y="382" font-size="11" fill="#334155">CompetitorMonitorSnapshot</text>
+
+  <rect x="30" y="412" width="220" height="66" rx="8" fill="#FDEBD0" stroke="#e8c98a"/>
+  <text x="44" y="434" font-size="12" font-weight="700" fill="#1f2d3d">商品诊断</text>
+  <text x="44" y="454" font-size="11" fill="#334155">ProductDiagnosis</text>
+  <text x="44" y="472" font-size="11" fill="#334155">PublicLinkParseTask</text>
+
+  <!-- 中心 Product -->
+  <rect x="300" y="250" width="180" height="74" rx="10" fill="#E6F1FB" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="390" y="282" font-size="15" font-weight="700" fill="#1f2d3d" text-anchor="middle">Product</text>
+  <text x="390" y="304" font-size="11" fill="#2b6cb0" text-anchor="middle">聚合根（核心）</text>
+
+  <!-- 右列业务块 -->
+  <rect x="530" y="110" width="220" height="86" rx="8" fill="#EEEDFE" stroke="#b3abec"/>
+  <text x="544" y="132" font-size="12" font-weight="700" fill="#1f2d3d">创意与素材生成</text>
+  <text x="544" y="152" font-size="11" fill="#334155">CreativePlan</text>
+  <text x="544" y="170" font-size="11" fill="#334155">GenerationJob · GeneratedAsset</text>
+  <text x="544" y="188" font-size="11" fill="#2b6cb0">ModelProviderSetting</text>
+
+  <rect x="530" y="214" width="220" height="86" rx="8" fill="#FAECE7" stroke="#e0a99a"/>
+  <text x="544" y="236" font-size="12" font-weight="700" fill="#1f2d3d">投放实验</text>
+  <text x="544" y="256" font-size="11" fill="#334155">AdRecommendation</text>
+  <text x="544" y="274" font-size="11" fill="#334155">AdExperiment</text>
+  <text x="544" y="292" font-size="11" fill="#334155">PromotionLink</text>
+
+  <rect x="530" y="318" width="220" height="86" rx="8" fill="#FAECE7" stroke="#e0a99a"/>
+  <text x="544" y="340" font-size="12" font-weight="700" fill="#1f2d3d">经营复盘</text>
+  <text x="544" y="360" font-size="11" fill="#334155">PerformanceRecord</text>
+  <text x="544" y="378" font-size="11" fill="#334155">ReviewReport</text>
+  <text x="544" y="396" font-size="11" fill="#334155">PromotionLinkClick</text>
+
+  <rect x="530" y="422" width="220" height="56" rx="8" fill="#EEEDFE" stroke="#b3abec"/>
+  <text x="544" y="444" font-size="12" font-weight="700" fill="#1f2d3d">生成任务</text>
+  <text x="544" y="464" font-size="11" fill="#334155">GenerationJobEvent</text>
+
+  <!-- 连接箭头 指向 Product -->
+  <g stroke="#94a3b8" stroke-width="1.4" fill="none">
+    <path d="M 250 200 L 320 270" fill="none"/>
+    <path d="M 250 300 L 320 290" fill="none"/>
+    <path d="M 250 390 L 320 305" fill="none"/>
+    <path d="M 530 160 L 480 275" fill="none"/>
+    <path d="M 530 260 L 480 285" fill="none"/>
+    <path d="M 530 360 L 480 300" fill="none"/>
+    <path d="M 530 450 L 480 310" fill="none"/>
+  </g>
+  <g fill="#94a3b8">
+    <polygon points="320,270 312,266 313,275" fill="#94a3b8"/>
+    <polygon points="320,290 312,286 313,295" fill="#94a3b8"/>
+    <polygon points="320,305 312,301 313,310" fill="#94a3b8"/>
+    <polygon points="480,275 488,271 487,280" fill="#94a3b8"/>
+    <polygon points="480,285 488,281 487,290" fill="#94a3b8"/>
+    <polygon points="480,300 488,296 487,305" fill="#94a3b8"/>
+    <polygon points="480,310 488,306 487,315" fill="#94a3b8"/>
+  </g>
+  <text x="390" y="500" font-size="11" fill="#64748b" text-anchor="middle">Workspace 1—* Store 1—* Product；Product 1—* 各业务实体（级联删除）</text>
+</svg>

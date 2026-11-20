@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 382" width="680" height="382">
+<rect width="680" height="382" fill="#FFFFFF"/>
+<rect x="40" y="24" width="600" height="64" rx="8" fill="#E6F1FB"/>
+<rect x="46" y="30" width="588" height="52" rx="6" fill="#FFFFFF"/>
+<text x="64" y="52" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">图节点函数 diagnosis_node(state)</text>
+<text x="64" y="72" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">读取状态、校验权限与预算</text>
+<path d="M 340 88 L 340 112" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,112 336,105 344,105" fill="#7A94AD"/>
+<rect x="40" y="108" width="600" height="64" rx="8" fill="#EAF3DE"/>
+<rect x="46" y="114" width="588" height="52" rx="6" fill="#FFFFFF"/>
+<text x="64" y="136" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">业务角色 DiagnosisAgent.run()</text>
+<text x="64" y="156" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">把上下文转成结构化草稿</text>
+<path d="M 340 172 L 340 196" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,196 336,189 344,189" fill="#7A94AD"/>
+<rect x="40" y="192" width="600" height="64" rx="8" fill="#FAEDA8"/>
+<rect x="46" y="198" width="588" height="52" rx="6" fill="#FFFFFF"/>
+<text x="64" y="220" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">真实模型调用或测试替身</text>
+<text x="64" y="240" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">同一个 CompletionClient 协议</text>
+<path d="M 340 256 L 340 280" fill="none" stroke="#7A94AD" stroke-width="1.6"/>
+<polygon points="340,280 336,273 344,273" fill="#7A94AD"/>
+<rect x="40" y="276" width="600" height="64" rx="8" fill="#EEEDFE"/>
+<rect x="46" y="282" width="588" height="52" rx="6" fill="#FFFFFF"/>
+<text x="64" y="304" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="12" fill="#1F2937" font-weight="bold">结构化结果写回 state</text>
+<text x="64" y="324" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#5A7A99" font-weight="normal">诊断草稿与本次用量</text>
+<text x="64" y="366" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="11" fill="#94A3B8" font-weight="normal">只有第二层是业务角色，其余都是让它可被观测、可被预算约束的辅助设施</text>
+</svg>

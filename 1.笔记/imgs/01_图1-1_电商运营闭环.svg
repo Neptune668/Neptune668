@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <rect x="0" y="0" width="680" height="420" fill="#F5F8FC"/>
+  <text x="340" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2937">电商运营闭环：流量 → 转化 → 复购 →（数据回流）→ 流量</text>
+
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- center label -->
+  <text x="340" y="196" text-anchor="middle" font-size="15" font-weight="700" fill="#6B7280">持续</text>
+  <text x="340" y="216" text-anchor="middle" font-size="15" font-weight="700" fill="#6B7280">循环</text>
+
+  <!-- arrows -->
+  <path d="M 300 138 Q 205 195 178 266" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#ah)"/>
+  <path d="M 252 322 L 426 322" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#ah)"/>
+  <path d="M 532 270 Q 612 182 448 98" fill="none" stroke="#B45309" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+  <text x="616" y="180" font-size="13" font-weight="700" fill="#B45309" text-anchor="middle">数据回流</text>
+
+  <!-- 流量 node -->
+  <g>
+    <rect x="240" y="42" width="200" height="96" rx="12" fill="#E6F1FB" stroke="#2F6FED" stroke-width="2"/>
+    <text x="340" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#1E3A8A">流量</text>
+    <text x="340" y="102" text-anchor="middle" font-size="12.5" fill="#2563EB">投放 · 内容种草 · 搜索排名</text>
+    <text x="340" y="122" text-anchor="middle" font-size="12.5" fill="#2563EB">让潜在买家看到商品</text>
+  </g>
+
+  <!-- 转化 node -->
+  <g>
+    <rect x="50" y="274" width="200" height="96" rx="12" fill="#EAF3DE" stroke="#4E9A3E" stroke-width="2"/>
+    <text x="150" y="310" text-anchor="middle" font-size="20" font-weight="700" fill="#1F5132">转化</text>
+    <text x="150" y="334" text-anchor="middle" font-size="12.5" fill="#2563EB">主图 · 标题 · 详情 · 价格</text>
+    <text x="150" y="354" text-anchor="middle" font-size="12.5" fill="#2563EB">让看到的人愿意买</text>
+  </g>
+
+  <!-- 复购 node -->
+  <g>
+    <rect x="430" y="274" width="200" height="96" rx="12" fill="#FDEBD0" stroke="#E08A1E" stroke-width="2"/>
+    <text x="530" y="310" text-anchor="middle" font-size="20" font-weight="700" fill="#8A4B00">复购</text>
+    <text x="530" y="334" text-anchor="middle" font-size="12.5" fill="#2563EB">履约 · 会员运营 · 竞品对标</text>
+    <text x="530" y="354" text-anchor="middle" font-size="12.5" fill="#2563EB">买过的人再来并带来新客</text>
+  </g>
+</svg>

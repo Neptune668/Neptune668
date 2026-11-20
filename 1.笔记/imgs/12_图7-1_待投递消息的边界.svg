@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" width="680" height="340">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="680" height="340" fill="#FFFFFF"/>
+
+  <text x="175" y="44" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">本篇已经完成的链路</text>
+  <text x="505" y="44" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#5F5E5A">尚未实现的链路</text>
+
+  <rect x="40" y="60" width="270" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="68" width="246" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="88" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">任务创建服务</text>
+  <text x="64" y="104" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">校验通过后在会话里建立三条记录</text>
+  <path d="M 175 120 L 175 136" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="140" width="270" height="60" rx="8" fill="#FAEDA8" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="148" width="246" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="168" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">待投递消息落库</text>
+  <text x="64" y="184" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">状态为待投递，携带幂等键与到期时间</text>
+  <path d="M 175 200 L 175 216" stroke="#7A94AD" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="220" width="270" height="60" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="52" y="228" width="246" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="64" y="248" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">调用方提交事务</text>
+  <text x="64" y="264" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">三条记录同时生效；回滚则一行都不留</text>
+
+  <path d="M 340 40 L 340 300" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="5 4" fill="none"/>
+
+  <rect x="370" y="60" width="270" height="60" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="1"/>
+  <rect x="382" y="68" width="246" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="88" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#5F5E5A">扫描到期消息</text>
+  <text x="394" y="104" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#888780">按到期时间排序并成批取出</text>
+  <path d="M 505 120 L 505 136" stroke="#B4B2A9" stroke-width="1.5" stroke-dasharray="4 3" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="370" y="140" width="270" height="60" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="1"/>
+  <rect x="382" y="148" width="246" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="168" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#5F5E5A">发送给后台执行体</text>
+  <text x="394" y="184" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#888780">跨越进程边界，已经不在事务内</text>
+  <path d="M 505 200 L 505 216" stroke="#B4B2A9" stroke-width="1.5" stroke-dasharray="4 3" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="370" y="220" width="270" height="60" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="1"/>
+  <rect x="382" y="228" width="246" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="394" y="248" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#5F5E5A">标记已投递或安排重试</text>
+  <text x="394" y="264" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#888780">失败计数与退避重试也在这里完成</text>
+
+  <text x="340" y="316" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937">本篇保证的是：如果要执行，这条消息一定已经在库里</text>
+  <text x="340" y="334" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">看到记录停在待投递不是故障，而是这个阶段的正确结果</text>
+</svg>

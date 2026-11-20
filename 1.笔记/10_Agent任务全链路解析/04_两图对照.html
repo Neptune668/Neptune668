@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>两图对照 · 基础图与平台图的异同</title>
+<style>
+  :root{--navy:#0B2545;--blue:#1F4E79;--blue2:#185FA5;--line:#D5E0EC;
+    --soft:#F2F6FB;--muted:#5A7A99;--ink:#233C5A;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#EEF3F9;color:var(--navy);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:15px;}
+  .doc{max-width:1180px;margin:0 auto;background:#FFFFFF;border:1px solid #DCE6F1;
+    border-radius:14px;padding:44px 54px 60px;}
+  header{border-bottom:3px solid var(--blue);padding-bottom:22px;margin-bottom:30px;}
+  header .kicker{font-size:13px;color:var(--blue2);letter-spacing:2px;font-weight:600;margin:0 0 10px;}
+  header h1{font-size:29px;margin:0 0 8px;color:var(--navy);font-weight:700;}
+  header .sub{font-size:14px;color:var(--muted);margin:0;}
+  h2{font-size:20px;color:var(--blue);margin:42px 0 14px;padding-left:14px;
+    border-left:5px solid var(--blue);font-weight:600;}
+  p{margin:10px 0;color:var(--ink);}
+  code{background:var(--soft);border:1px solid #E3ECF6;border-radius:5px;
+    padding:1px 6px;color:var(--blue2);font-family:"SF Mono",Consolas,monospace;font-size:13px;}
+  .note{background:#E6F1FB;border:1px solid #B5D4F4;border-left:5px solid #378ADD;
+    border-radius:10px;padding:18px 22px;margin:20px 0;}
+  .note b{color:var(--blue);}
+  figure{margin:24px 0 8px;background:#FAFCFF;border:1px solid var(--line);
+    border-radius:12px;padding:18px 16px 12px;}
+  figure svg{display:block;width:100%;height:auto;}
+  figcaption{text-align:center;color:var(--muted);font-size:13px;padding:8px 0 2px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0 8px;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+  th{background:#E6F1FB;color:#0C447C;font-weight:600;}
+  td.item{white-space:nowrap;font-weight:600;color:var(--navy);background:#FAFCFF;width:140px;}
+  td.base{color:#0C447C;} td.plat{color:#854F0B;}
+  .png-canvas{width:100%;overflow-x:auto;overflow-y:hidden;background:#FFFFFF;
+    border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:8px;
+    scrollbar-width:thin;scrollbar-color:#1F4E79 #E6F1FB;}
+  .png-canvas::-webkit-scrollbar{height:14px;}
+  .png-canvas::-webkit-scrollbar-track{background:#E6F1FB;border:1px solid #C9D6E5;border-radius:8px;}
+  .png-canvas::-webkit-scrollbar-thumb{background:#1F4E79;border:2px solid #E6F1FB;border-radius:8px;}
+  .png-canvas img{display:block;max-width:none;height:850px;width:auto;}
+  .subcap{font-size:13px;color:var(--muted);margin:22px 0 6px;font-weight:600;}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:18px;
+    color:var(--muted);font-size:13px;}
+  .tag{display:inline-block;font-size:12px;color:#0C447C;background:#E6F1FB;
+    border:1px solid #B5D4F4;border-radius:20px;padding:2px 12px;margin-right:8px;}
+  .back-home{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:9999;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    width:46px;padding:15px 0;background:#1F4E79;color:#fff;text-decoration:none;
+    border-radius:0 10px 10px 0;box-shadow:2px 0 12px rgba(11,37,69,.20);
+    font-family:inherit;transition:background .2s ease;}
+  .back-home:hover{background:#0B2545;}
+  .back-home .ba{font-size:26px;line-height:1;font-weight:400;}
+  .back-home .bt{font-size:12px;line-height:1.2;letter-spacing:2px;writing-mode:vertical-rl;}
+
+  html{scroll-behavior:smooth;}
+  h2,h3{scroll-margin-top:24px;}
+  .side-toc{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:9998;
+    width:100px;max-width:100px;max-height:76vh;overflow-y:auto;overflow-x:hidden;
+    background:#FAFBFC;border:1px solid #DDE2E8;border-right:none;
+    border-radius:6px 0 0 6px;box-shadow:-2px 2px 10px rgba(60,70,85,.08);
+    font-family:inherit;font-weight:400;scrollbar-width:thin;
+    scrollbar-color:#C6CDD6 #F0F2F5;}
+  .side-toc::-webkit-scrollbar{width:5px;}
+  .side-toc::-webkit-scrollbar-track{background:#F0F2F5;border-radius:5px;}
+  .side-toc::-webkit-scrollbar-thumb{background:#C6CDD6;border-radius:5px;}
+  .side-toc a{display:flex;align-items:center;text-decoration:none;color:#8A95A3;font-size:10.5px;font-weight:400;
+    line-height:1.4;white-space:normal;word-break:break-all;overflow-wrap:anywhere;
+    padding:6px 5px;border-bottom:1px solid #E8ECF1;
+    transition:background .15s,color .15s;}
+  .side-toc a:last-child{border-bottom:none;}
+  .side-toc a.lv2{color:#5A6675;font-weight:400;}
+  .side-toc a.lv3{padding-left:9px;font-size:10px;}
+  .side-toc a:hover{background:#F0F2F5;color:#5A6675;}
+  .side-toc a.active{background:#EFF2F6;color:#4A5666;}
+
+</style>
+</head>
+<body>
+<a class="back-home" href="00_Agent任务全链路解析.html" title="返回目录" aria-label="返回目录"><span class="ba">&#8249;</span><span class="bt">返回目录</span></a>
+<div class="doc">
+
+<header>
+  <p class="kicker">电商运营助手 · 两图对照</p>
+  <h1>基础图与平台图的业务流程对照</h1>
+  <p class="sub">共享骨架相同，入口裁决与最终构图不同</p>
+</header>
+
+<div class="note">
+<b>总体结论：</b>两条流程并非「除了入口以外都一样」。它们共享「写入发件箱 → Worker 扫描投递 → 构图执行 → 状态机与检查点」这套运行时骨架；但在工作流如何裁决、校验多少、最终构建哪张图上有实质差异，而且存在一条回流路径——平台入口若路由到商品诊断，最终执行的仍是基础图。
+</div>
+
+<h2 id="sec-1">一、分叉—汇合—再分叉的全貌</h2>
+
+<figure>
+<svg viewBox="0 0 1120 760" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>两条入口链路的分叉、汇合与再分叉</title>
+<desc>两个入口在工作流裁决上分叉，在发件箱处汇合并共享可靠投递骨架，再按 workflow_key 分流到基础图或平台图。</desc>
+<defs>
+<marker id="cm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#7A94AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<!-- 第一行：两个入口 -->
+<rect x="80" y="24" width="420" height="62" rx="12" fill="#F2F4F7" stroke="#C9D3DF" stroke-width="1"/>
+<text x="290" y="46" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="600" fill="#2C3E50">商品工作台入口</text>
+<text x="290" y="68" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-family="Consolas,monospace" fill="#4A5B6E">POST /products/{id}/agent-runs</text>
+
+<rect x="620" y="24" width="420" height="62" rx="12" fill="#F2F4F7" stroke="#C9D3DF" stroke-width="1"/>
+<text x="830" y="46" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="600" fill="#2C3E50">平台任务入口</text>
+<text x="830" y="68" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-family="Consolas,monospace" fill="#4A5B6E">POST /workspaces/{id}/agent/tasks</text>
+
+<path d="M290 86 L290 116" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+<path d="M830 86 L830 116" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+
+<!-- 第二行：工作流裁决（模块名 + 函数名 + 描述） -->
+<rect x="80" y="118" width="420" height="106" rx="12" fill="#FDF4E7" stroke="#EBD3A8" stroke-width="1"/>
+<text x="290" y="137" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-family="Consolas,monospace" fill="#0B6E99">services/agent_runs.py</text>
+<text x="290" y="155" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-family="Consolas,monospace" fill="#0B6E99">create_agent_run_record()</text>
+<text x="290" y="177" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#8A5A16">工作流写死：商品诊断优化</text>
+<text x="290" y="196" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#8A5A16">Task 条件创建（看 workspace 开关）</text>
+<text x="290" y="213" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#8A5A16">开关关 → 无 Task，直投队列绕开 Outbox</text>
+
+<rect x="620" y="118" width="420" height="106" rx="12" fill="#FDF4E7" stroke="#EBD3A8" stroke-width="1"/>
+<text x="830" y="137" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-family="Consolas,monospace" fill="#0B6E99">services/agent_tasks.py</text>
+<text x="830" y="155" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-family="Consolas,monospace" fill="#0B6E99">create_agent_task() · _resolve_workflow()</text>
+<text x="830" y="177" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#8A5A16">route_intent / 显式 key 裁决</text>
+<text x="830" y="196" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#8A5A16">Task 必建，四表同事务</text>
+<text x="830" y="213" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#8A5A16">准入 / 并发 / 上下文校验</text>
+
+<path d="M290 224 L290 248 L530 276" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+<path d="M830 224 L830 248 L590 276" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+
+<!-- 第三行：汇合 -->
+<rect x="80" y="278" width="960" height="70" rx="12" fill="#E8F1FB" stroke="#B8D4F0" stroke-width="1"/>
+<text x="560" y="302" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="600" fill="#0C447C">两条入口在这里汇合</text>
+<text x="560" y="325" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#185FA5">同事务写 AgentTask + AgentRun + AgentRunEvent + OutboxEvent(pending) · 幂等键 :start</text>
+
+<path d="M560 348 L560 380" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+
+<!-- 第四行：共享投递骨架 -->
+<rect x="80" y="382" width="960" height="70" rx="12" fill="#E8F1FB" stroke="#B8D4F0" stroke-width="1"/>
+<text x="560" y="406" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="600" fill="#0C447C">共享可靠投递骨架</text>
+<text x="560" y="429" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#185FA5">Beat 每 5 秒 → maintenance Worker 扫 pending → agent.workflow 队列 → run_registered_agent_workflow_task</text>
+
+<path d="M560 452 L560 484" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+
+<!-- 第五行：分流判定 -->
+<rect x="310" y="486" width="500" height="54" rx="10" fill="#FFFFFF" stroke="#B8C9DA" stroke-width="1"/>
+<text x="560" y="513" text-anchor="middle" dominant-baseline="central" font-size="13" font-family="Consolas,monospace" fill="#233C5A">workflow_key == product_diagnosis_optimization ?</text>
+
+<path d="M470 540 L300 578" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+<path d="M650 540 L820 578" fill="none" stroke="#7A94AD" stroke-width="1.5" marker-end="url(#cm)"/>
+
+<!-- 第六行：两种构图 -->
+<rect x="80" y="580" width="420" height="96" rx="12" fill="#E8F1FB" stroke="#B8D4F0" stroke-width="1"/>
+<text x="290" y="603" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#0C447C">是 · 转调基础图</text>
+<text x="290" y="625" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#185FA5">run_agent_workflow() → build_product_operation_graph()</text>
+<text x="290" y="651" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5A7A99">商品工作台入口必然到达这里</text>
+
+<rect x="620" y="580" width="420" height="96" rx="12" fill="#FDF4E7" stroke="#EBD3A8" stroke-width="1"/>
+<text x="830" y="603" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#8A5A16">否 · 其余 6 个注册工作流</text>
+<text x="830" y="625" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#8A5A16">build_platform_workflow_graph()</text>
+<text x="830" y="651" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#A3661A">平台图；命中商品诊断时会回落到左侧基础图</text>
+</svg>
+<figcaption>图：两个入口在工作流裁决上分叉，在发件箱处汇合并共享投递骨架，再按 workflow_key 分流到基础图或平台图</figcaption>
+</figure>
+
+<h2 id="sec-2">二、五处关键差异</h2>
+
+<table>
+<thead><tr><th style="width:140px">环节</th><th>基础图链路</th><th>平台图链路</th></tr></thead>
+<tbody>
+<tr><td class="item">入口</td><td class="base">POST /products/{product_id}/agent-runs，从商品工作台发起</td><td class="plat">POST /workspaces/{workspace_id}/agent/tasks，从平台工作台发起</td></tr>
+<tr><td class="item">工作流裁决</td><td class="base">写死 product_diagnosis_optimization，不做意图路由</td><td class="plat">显式 workflow_key 或 route_intent(intent) 裁决，可选注册的七条工作流</td></tr>
+<tr><td class="item">Task 创建</td><td class="base">条件创建：商品所属工作区启用该工作流才建，否则 task 为空并直投队列</td><td class="plat">必建：同一事务写四张表，无“跳过”分支</td></tr>
+<tr><td class="item">校验</td><td class="base">仅做活动运行冲突检查</td><td class="plat">工作区准入、上下文作用域、对话、每租户并发上限等多重校验</td></tr>
+<tr><td class="item">最终构图</td><td class="base">固定构建基础图 build_product_operation_graph</td><td class="plat">默认回落基础图；其余六条工作流才构建平台图 build_platform_workflow_graph</td></tr>
+</tbody>
+</table>
+
+<div class="note">
+<b>共享部分：</b>两条链路都写 <code>OutboxEvent</code> 并走两阶段投递，都由 <code>agent.workflow</code> Worker 消费，都用 <code>thread_id</code> + 检查点实现中断恢复，都用租约防止重复执行。两者的差异集中在入口与构图，运行时骨架相同。
+</div>
+
+<h2 id="sec-3">三、两张完整业务流程调用图对照</h2>
+
+<p class="subcap">基础图 · 商品工作台入口</p>
+<div class="png-canvas">
+  <img src="assets/Agent业务流程-基础图.png" alt="基础图完整业务流程调用图">
+</div>
+
+<p class="subcap">平台图 · 平台任务入口</p>
+<div class="png-canvas">
+  <img src="assets/Agent业务流程-平台图.png" alt="平台图完整业务流程调用图">
+</div>
+<p style="font-size:12.5px;color:#5A7A99;">两幅图都很宽，可在各自区域内左右滚动查看，对照入口、校验与构图各框的差异。</p>
+
+<footer>
+<span class="tag">两图对照</span>电商运营助手 · Agent任务全链路解析
+</footer>
+
+</div>
+
+<aside class="side-toc" aria-label="章节导航">
+  <nav class="toc-list">
+    <a class="lv2" href="#sec-1">一、分叉—汇合—再分叉的全貌</a>
+    <a class="lv2" href="#sec-2">二、五处关键差异</a>
+    <a class="lv2" href="#sec-3">三、两张完整业务流程调用图对照</a>
+  </nav>
+</aside>
+
+
+<script>
+(function(){
+  var box=document.querySelector('.side-toc');
+  if(!box) return;
+  var links=[].slice.call(box.querySelectorAll('.toc-list a'));
+  var secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function sync(){
+    var y=window.scrollY+130, idx=0;
+    for(var i=0;i<secs.length;i++){ if(secs[i] && secs[i].offsetTop<=y) idx=i; }
+    links.forEach(function(a,i){ a.classList.toggle('active', i===idx); });
+  }
+  window.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync);
+  sync();
+  // 目录项等高：取本页最高项高度统一
+  function equalize(){
+    links.forEach(function(a){ a.style.height=''; });
+    var max=0;
+    links.forEach(function(a){ if(a.offsetHeight>max) max=a.offsetHeight; });
+    links.forEach(function(a){ a.style.height=max+'px'; });
+  }
+  equalize();
+  window.addEventListener('resize',function(){ equalize(); sync(); });
+})();
+</script>
+</body>
+</html>

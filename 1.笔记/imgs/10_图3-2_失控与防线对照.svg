@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" width="680" height="420">
+  <rect x="0" y="0" width="680" height="420" fill="#FFFFFF"/>
+
+  <rect x="24" y="20" width="230" height="30" rx="6" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="139" y="40" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937" text-anchor="middle">四类失控</text>
+
+  <rect x="424" y="20" width="232" height="30" rx="6" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="540" y="40" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937" text-anchor="middle">防线</text>
+
+  <rect x="300" y="20" width="80" height="30" rx="6" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="340" y="40" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937" text-anchor="middle">承担模块</text>
+
+  <rect x="24" y="66" width="230" height="60" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="76" width="206" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="93" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">越界读取</text>
+  <text x="48" y="110" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">节点读到工作区之外的数据</text>
+
+  <rect x="300" y="66" width="80" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="340" y="92" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937" text-anchor="middle">上下文加载</text>
+  <text x="340" y="110" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99" text-anchor="middle">工具网关</text>
+
+  <rect x="424" y="66" width="232" height="60" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="436" y="76" width="208" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="448" y="93" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">按工作区过滤并校验归属</text>
+  <text x="448" y="110" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">越界直接拒绝，不返回部分结果</text>
+
+  <rect x="24" y="146" width="230" height="60" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="156" width="206" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="173" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">无限循环</text>
+  <text x="48" y="190" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">质量不通过就一直返修</text>
+
+  <rect x="300" y="146" width="80" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="340" y="172" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937" text-anchor="middle">基础图</text>
+  <text x="340" y="190" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99" text-anchor="middle">共享状态</text>
+
+  <rect x="424" y="146" width="232" height="60" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="436" y="156" width="208" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="448" y="173" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">返修次数上限，超限交人工</text>
+  <text x="448" y="190" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">默认一次，可配置零到三次</text>
+
+  <rect x="24" y="226" width="230" height="60" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="236" width="206" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="253" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">重复副作用</text>
+  <text x="48" y="270" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">重投或崩溃后同一动作执行两次</text>
+
+  <rect x="300" y="226" width="80" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="340" y="252" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937" text-anchor="middle">租约模块</text>
+  <text x="340" y="270" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99" text-anchor="middle">工具网关</text>
+
+  <rect x="424" y="226" width="232" height="60" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="436" y="236" width="208" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="448" y="253" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">独占租约加幂等操作键</text>
+  <text x="448" y="270" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">已完成的操作直接返回旧结果</text>
+
+  <rect x="24" y="306" width="230" height="60" rx="8" fill="#FAECE7" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="36" y="316" width="206" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="48" y="333" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">成本与不可追溯</text>
+  <text x="48" y="350" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">多轮消耗无人统计，过程不落库</text>
+
+  <rect x="300" y="306" width="80" height="60" rx="8" fill="#E6F1FB" stroke="#C9D6E5" stroke-width="1"/>
+  <text x="340" y="332" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#1F2937" text-anchor="middle">Harness</text>
+  <text x="340" y="350" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99" text-anchor="middle">运行服务</text>
+
+  <rect x="424" y="306" width="232" height="60" rx="8" fill="#EAF3DE" stroke="#C9D6E5" stroke-width="1"/>
+  <rect x="436" y="316" width="208" height="40" rx="6" fill="#FFFFFF"/>
+  <text x="448" y="333" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#1F2937">预算熔断与脱敏事件</text>
+  <text x="448" y="350" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#5A7A99">三步事件留痕，含链路标识</text>
+
+  <path d="M 258 96 L 296 96" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="300,96 293,92 293,100" fill="#B0917F"/>
+  <path d="M 258 176 L 296 176" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="300,176 293,172 293,180" fill="#B0917F"/>
+  <path d="M 258 256 L 296 256" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="300,256 293,252 293,260" fill="#B0917F"/>
+  <path d="M 258 336 L 296 336" stroke="#B0917F" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <polygon points="300,336 293,332 293,340" fill="#B0917F"/>
+
+  <path d="M 384 96 L 420 96" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="424,96 417,92 417,100" fill="#7A94AD"/>
+  <path d="M 384 176 L 420 176" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="424,176 417,172 417,180" fill="#7A94AD"/>
+  <path d="M 384 256 L 420 256" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="424,256 417,252 417,260" fill="#7A94AD"/>
+  <path d="M 384 336 L 420 336" stroke="#7A94AD" stroke-width="1.5" fill="none"/>
+  <polygon points="424,336 417,332 417,340" fill="#7A94AD"/>
+</svg>

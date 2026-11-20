@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 240" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect x="0" y="0" width="680" height="240" fill="#FFFFFF"/>
+  <rect x="8" y="8" width="664" height="224" rx="10" fill="#EAF3DE" stroke="#9DBE7A" stroke-width="1.5"/>
+  <text x="24" y="34" font-size="14" font-weight="700" fill="#1F2937">图 1-1　运行链路全景</text>
+  <text x="24" y="54" font-size="11" fill="#5A7A99">一次 Agent 运行从认领、执行、暂停审核到恢复与维护的完整闭环</text>
+<rect x="40" y="110" width="110" height="54" rx="6" fill="#E6F1FB" stroke="#7A94AD" stroke-width="1.2"/><text x="95.0" y="141.0" font-size="12" fill="#1F2937" text-anchor="middle">Outbox 待投递</text>
+<line x1="150" y1="137.0" x2="165" y2="137.0" stroke="#5A7A99" stroke-width="1.6"/><polygon points="165,137.0 160,133.0 160,141.0" fill="#5A7A99"/>
+<rect x="165" y="110" width="110" height="54" rx="6" fill="#EAF3DE" stroke="#7A94AD" stroke-width="1.2"/><text x="220.0" y="141.0" font-size="12" fill="#1F2937" text-anchor="middle">Worker 认领 续约租约</text>
+<line x1="275" y1="137.0" x2="290" y2="137.0" stroke="#5A7A99" stroke-width="1.6"/><polygon points="290,137.0 285,133.0 285,141.0" fill="#5A7A99"/>
+<rect x="290" y="110" width="110" height="54" rx="6" fill="#EEEDFE" stroke="#7A94AD" stroke-width="1.2"/><text x="345.0" y="141.0" font-size="12" fill="#1F2937" text-anchor="middle">驱动基础图 生成草稿</text>
+<line x1="400" y1="137.0" x2="415" y2="137.0" stroke="#5A7A99" stroke-width="1.6"/><polygon points="415,137.0 410,133.0 410,141.0" fill="#5A7A99"/>
+<rect x="415" y="110" width="110" height="54" rx="6" fill="#FAEDA8" stroke="#94a3b8" stroke-width="1.2"/><text x="470.0" y="141.0" font-size="12" fill="#1F2937" text-anchor="middle">暂停等待 人工审核</text>
+<line x1="525" y1="137.0" x2="540" y2="137.0" stroke="#5A7A99" stroke-width="1.6"/><polygon points="540,137.0 535,133.0 535,141.0" fill="#5A7A99"/>
+<rect x="540" y="110" width="110" height="54" rx="6" fill="#FAECE7" stroke="#94a3b8" stroke-width="1.2"/><text x="595.0" y="141.0" font-size="12" fill="#1F2937" text-anchor="middle">审核通过 恢复执行</text>
+<line x1="650" y1="137.0" x2="665" y2="137.0" stroke="#5A7A99" stroke-width="1.6"/><polygon points="665,137.0 660,133.0 660,141.0" fill="#5A7A99"/>
+<text x="40" y="200" font-size="11" fill="#5A7A99">运行全生命周期：调度 → 执行 → 暂停 → 审核 → 恢复 → 故障维护，租约贯穿始终</text>
+</svg>
